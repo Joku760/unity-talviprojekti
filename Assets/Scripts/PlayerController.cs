@@ -8,13 +8,15 @@ public class PlayerController : MonoBehaviour
     Vector3 lookPos;
     Vector3 movement;
     Rigidbody rigidBody;
+    Vector3 camInitialPosition;
 
     public float speed = 5;
     // Start is called before the first frame update
     void Start()
     {
         //cam = GetComponentInChildren<Camera>();
-        rigidBody = GetComponent<Rigidbody>();     
+        rigidBody = GetComponent<Rigidbody>();
+        camInitialPosition = cam.transform.position;
     }
 
     // Update is called once per frame
@@ -39,13 +41,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         cam.transform.position = transform.position;
-        Vector3 temp = new Vector3(0, 6, -4);
-        cam.transform.position += temp;
+        cam.transform.position += camInitialPosition;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         movement = new Vector3(horizontal, 0, vertical);
 
-        //rigidBody.velocity = movement * 5;
         rigidBody.AddForce(movement * speed);
     } 
 }
