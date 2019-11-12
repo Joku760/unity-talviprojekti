@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public double dashCooldown = 50;
     public int dashSpeed = 4;
     public float speed = 5;
+    public GameObject cameraRotator;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,18 +29,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         RotatePlayer();
+        RotateCamera();
     }
 
     void FixedUpdate()
     {
         MovePlayer();
-
-       /* if (Input.GetKeyDown("space"))
-        {
-            Dodge();
-               
-            }
-        */
     } 
 
     void RotatePlayer()
@@ -53,8 +48,8 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
-        cam.transform.position = transform.position;
-        cam.transform.position += camInitialPosition;
+        cameraRotator.transform.position = transform.position;
+        //cam.transform.position += camInitialPosition;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         movement = new Vector3(horizontal, 0, vertical);
@@ -86,6 +81,18 @@ public class PlayerController : MonoBehaviour
         if (dashCooldown < 50)
         {
             dashCooldown++;
+        }
+    }
+
+    void RotateCamera()
+    {
+        if (Input.GetKey(KeyCode.Q))
+        {
+            cameraRotator.transform.Rotate(new Vector3(0, 1, 0));
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            cameraRotator.transform.Rotate(new Vector3(0, -1, 0));
         }
     }
 }
