@@ -22,20 +22,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit hit;
+        float h = Input.mousePosition.x - Screen.width / 2;
+        float v = Input.mousePosition.y - Screen.height / 2;
+        float angle = -Mathf.Atan2(v, h) * Mathf.Rad2Deg;
 
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            lookPos = hit.point;
-        }
-
-        Vector3 lookDir = lookPos - transform.position;
-        lookDir.y = 0;
-
-        transform.LookAt(transform.position + lookDir, Vector3.up);
+        transform.rotation = Quaternion.Euler(0, angle +90, 0);
     }
 
     void FixedUpdate()
