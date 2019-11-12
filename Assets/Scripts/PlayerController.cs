@@ -8,44 +8,36 @@ public class PlayerController : MonoBehaviour
     Vector3 lookPos;
     Vector3 movement;
     Rigidbody rigidBody;
+    Vector3 camInitialPosition;
 
     public float speed = 5;
     // Start is called before the first frame update
     void Start()
     {
         //cam = GetComponentInChildren<Camera>();
-        rigidBody = GetComponent<Rigidbody>();     
+        rigidBody = GetComponent<Rigidbody>();
+        camInitialPosition = cam.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit hit;
+        float h = Input.mousePosition.x - Screen.width / 2;
+        float v = Input.mousePosition.y - Screen.height / 2;
+        float angle = -Mathf.Atan2(v, h) * Mathf.Rad2Deg;
 
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            lookPos = hit.point;
-        }
-
-        Vector3 lookDir = lookPos - transform.position;
-        lookDir.y = 0;
-
-        transform.LookAt(transform.position + lookDir, Vector3.up);
+        transform.rotation = Quaternion.Euler(0, angle +90, 0);
     }
 
     void FixedUpdate()
     {
         cam.transform.position = transform.position;
-        Vector3 temp = new Vector3(0, 6, -4);
-        cam.transform.position += temp;
+        cam.transform.position += camInitialPosition;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         movement = new Vector3(horizontal, 0, vertical);
 
-        //rigidBody.velocity = movement * 5;
         rigidBody.AddForce(movement * speed);
     } 
 }
