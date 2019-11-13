@@ -3529,8 +3529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Settingsmenu: {fileID: 1422183950}
   Mainmenu: {fileID: 1619640240}
-  audioMixer: {fileID: 0}
-  resolutionDropdown: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 53dbe182e4167e940a8185bcba89edea, type: 2}
+  resolutionDropdown: {fileID: 564569658}
 --- !u!1 &1662703489
 GameObject:
   m_ObjectHideFlags: 0
