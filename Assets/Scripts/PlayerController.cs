@@ -88,11 +88,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            cameraRotator.transform.Rotate(new Vector3(0, 1, 0));
+            cameraRotator.transform.Rotate(new Vector3(0, -1, 0));
         }
         if (Input.GetKey(KeyCode.E))
         {
-            cameraRotator.transform.Rotate(new Vector3(0, -1, 0));
+            cameraRotator.transform.Rotate(new Vector3(0, 1, 0));
         }
     }
 }
