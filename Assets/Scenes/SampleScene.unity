@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1347,6 +1347,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &189601051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4416662144068238273, guid: 984729569f8972c4abc2dffa563be5eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1348229450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &200443337 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1784612528550548, guid: 2d0f20d11945dcf40bc89cbe6339221c,
@@ -8882,6 +8888,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 821875907577016999, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: cameraRotator
+      value: 
+      objectReference: {fileID: 189601051}
     - target: {fileID: 821875907767824313, guid: 984729569f8972c4abc2dffa563be5eb,
         type: 3}
       propertyPath: m_LocalPosition.y
