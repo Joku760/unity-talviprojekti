@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerController : MonoBehaviour
 {
     public Camera cam;
-    Vector3 lookPos;
     Vector3 movement;
     Rigidbody rigidBody;
-    Vector3 camInitialPosition;
     int speedModifier;
     double dashTime;
     public double dashCooldown = 50;
@@ -17,13 +16,14 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public GameObject cameraRotator;
     Sword sword;
+    public int hp = 100;
+    public Slider hpSlider;
  
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         sword = FindObjectOfType<Sword>();
-        camInitialPosition = cam.transform.position - transform.position;
         speedModifier = 1;
         dashTime = 5;
     }
@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
         cameraRotator.transform.position = transform.position;
-        //cam.transform.position += camInitialPosition;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         movement = new Vector3(horizontal, 0, vertical);
@@ -121,5 +120,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void UpdateHp(int damage)
+    {
+        hp = hp - damage;
+        hpSlider.value = hp;
+        
+        if(hp <= 0 )
+        {
+            //GAMEOVER
+            Debug.Log("GAMEOVER");
+        }
+    }
    
 }
