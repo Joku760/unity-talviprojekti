@@ -1,26 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
     public Camera cam;
-    Vector3 lookPos;
     Vector3 movement;
     Rigidbody rigidBody;
-    Vector3 camInitialPosition;
     int speedModifier;
     double dashTime;
     public double dashCooldown = 50;
     public int dashSpeed = 4;
     public float speed = 5;
     public GameObject cameraRotator;
-
+    Sword sword;
+    public int hp = 100;
+    public Slider hpSlider;
+ 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-        camInitialPosition = cam.transform.position - transform.position;
+        sword = FindObjectOfType<Sword>();
         speedModifier = 1;
         dashTime = 5;
     }
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
     {
         RotatePlayer();
         RotateCamera();
+
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            sword.PerformAttack();
+        }
     }
 
     void FixedUpdate()
@@ -51,7 +59,11 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100))
         {
-            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            if(hit.collider.tag != "Weapon")
+            {
+                transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            }
+            
         }
 
     }
@@ -59,7 +71,6 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
         cameraRotator.transform.position = transform.position;
-        //cam.transform.position += camInitialPosition;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         movement = new Vector3(horizontal, 0, vertical);
@@ -108,4 +119,17 @@ public class PlayerController : MonoBehaviour
             cameraRotator.transform.Rotate(new Vector3(0, 1.5f, 0));
         }
     }
+
+    void UpdateHp(int damage)
+    {
+        hp = hp - damage;
+        hpSlider.value = hp;
+        
+        if(hp <= 0 )
+        {
+            //GAMEOVER
+            Debug.Log("GAMEOVER");
+        }
+    }
+   
 }
