@@ -120,11 +120,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void UpdateHp(int damage)
+    public void UpdateHp(int damage)
     {
-        hp = hp - damage;
-        hpSlider.value = hp;
-        
+        //if(dashTime != 5 && damage > 0)
+        //{
+            
+        //}
+        //else
+        //{
+            hp = hp - damage;
+            hpSlider.value = hp;
+        //}
+      
         if(hp <= 0 )
         {
             //GAMEOVER
