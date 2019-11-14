@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     public int dashSpeed = 4;
     public float speed = 5;
     public GameObject cameraRotator;
+
     // Start is called before the first frame update
     void Start()
     {
-        //cam = GetComponentInChildren<Camera>();
         rigidBody = GetComponent<Rigidbody>();
         camInitialPosition = cam.transform.position - transform.position;
         speedModifier = 1;
@@ -39,11 +39,21 @@ public class PlayerController : MonoBehaviour
 
     void RotatePlayer()
     {
-        float h = Input.mousePosition.x - Screen.width / 2;
+        /*float h = Input.mousePosition.x - Screen.width / 2;
         float v = Input.mousePosition.y - Screen.height / 2;
         float angle = -Mathf.Atan2(v, h) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, angle + 90, 0);
+        */
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        }
+
     }
 
     void MovePlayer()
@@ -53,8 +63,11 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         movement = new Vector3(horizontal, 0, vertical);
+        movement = Camera.main.transform.TransformDirection(movement);
+        movement.y = 0.0f;
+        movement = Vector3.ClampMagnitude(movement, 1);
 
-        rigidBody.AddForce(movement * speed * speedModifier);
+        rigidBody.AddForce(movement *speed * speedModifier);
 
         Dodge();
         
@@ -88,11 +101,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            cameraRotator.transform.Rotate(new Vector3(0, 1, 0));
+            cameraRotator.transform.Rotate(new Vector3(0, -1.5f, 0));
         }
         if (Input.GetKey(KeyCode.E))
         {
-            cameraRotator.transform.Rotate(new Vector3(0, -1, 0));
+            cameraRotator.transform.Rotate(new Vector3(0, 1.5f, 0));
         }
     }
 }

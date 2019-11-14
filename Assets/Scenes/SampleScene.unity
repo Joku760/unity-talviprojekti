@@ -9162,6 +9162,11 @@ PrefabInstance:
       propertyPath: cameraRotator
       value: 
       objectReference: {fileID: 189601051}
+    - target: {fileID: 821875907577016999, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: speed
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 821875907767824313, guid: 984729569f8972c4abc2dffa563be5eb,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -9231,6 +9236,26 @@ PrefabInstance:
         type: 3}
       propertyPath: field of view
       value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 821875907577016996, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 821875907577016996, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 821875907577016996, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 821875907577016996, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}

@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 564569659}
   - component: {fileID: 564569658}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: ResDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2033,7 +2033,7 @@ GameObject:
   - component: {fileID: 901965102}
   - component: {fileID: 901965103}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: VolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2133,7 +2133,7 @@ GameObject:
   - component: {fileID: 914443920}
   - component: {fileID: 914443921}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Fullscreentoggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3867,7 +3867,7 @@ GameObject:
   - component: {fileID: 1747544640}
   - component: {fileID: 1747544639}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: GraDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
