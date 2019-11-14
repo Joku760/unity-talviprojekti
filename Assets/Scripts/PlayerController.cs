@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     public Camera cam;
@@ -15,11 +16,13 @@ public class PlayerController : MonoBehaviour
     public int dashSpeed = 4;
     public float speed = 5;
     public GameObject cameraRotator;
-
+    Sword sword;
+ 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        sword = FindObjectOfType<Sword>();
         camInitialPosition = cam.transform.position - transform.position;
         speedModifier = 1;
         dashTime = 5;
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
     {
         RotatePlayer();
         RotateCamera();
+
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            sword.PerformAttack();
+        }
     }
 
     void FixedUpdate()
@@ -51,7 +59,11 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100))
         {
-            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            if(hit.collider.tag != "Weapon")
+            {
+                transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            }
+            
         }
 
     }
@@ -108,4 +120,6 @@ public class PlayerController : MonoBehaviour
             cameraRotator.transform.Rotate(new Vector3(0, 1.5f, 0));
         }
     }
+
+   
 }
