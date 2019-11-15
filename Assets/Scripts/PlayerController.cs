@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     Sword sword;
     public int hp = 100;
     public Slider hpSlider;
+    float temps;
  
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,21 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+            
+
+            temps = Time.time;
+        }
+
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.5)
+        {
+            // short Click
             sword.PerformAttack();
+        }
+
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.5)
+        {
+            // Long Click
+            sword.SpecialAttack();
         }
     }
 
