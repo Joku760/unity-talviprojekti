@@ -5,16 +5,50 @@ using UnityEngine;
 public class ShowMessage : MonoBehaviour
 {
     public GameObject objekti;
-    private void OnMouseDown()
+    Transform player;
+    bool hover = false;
+    bool open = false;
+
+    private void Start()
     {
-        objekti.gameObject.SetActive(true);
+        player = GameObject.Find("Player").transform;
+    }
+    private void OnMouseEnter()
+    {
+        hover = true;
+    }
+
+    private void OnMouseExit()
+    {
+        hover = false;
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.F) && hover && HaveLineOfSight())
+        {
+            objekti.gameObject.SetActive(true);
+            open = true;
+        }
+
+        if (Input.anyKey && open)
         {
             objekti.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
+    }
+    bool HaveLineOfSight()
+    {
+        RaycastHit hit;
+        Vector3 direction = player.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, direction, out hit, 1))
+        {
+            if (hit.transform.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

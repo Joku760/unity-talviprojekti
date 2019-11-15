@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LightTorch : MonoBehaviour
 {
-    public Transform player;
+    Transform player;
     Light torchlight;
 
     private void Start()
     {
+        player = GameObject.Find("Player").transform;
         torchlight = GetComponentInChildren<Light>();
         torchlight.gameObject.SetActive(false);
     }
