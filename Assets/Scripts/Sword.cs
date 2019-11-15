@@ -16,6 +16,11 @@ public class Sword : MonoBehaviour
         animator.SetTrigger("Base_Attack");
     }
 
+    public void SpecialAttack()
+    {
+        animator.SetTrigger("Special_Attack");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag != "Player")

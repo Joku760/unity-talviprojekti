@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     Sword sword;
     public int hp = 100;
     public Slider hpSlider;
- 
+    float temps;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,14 +37,28 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+
+
+            temps = Time.time;
+        }
+
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.5)
+        {
+            // short Click
             sword.PerformAttack();
+        }
+
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.5)
+        {
+            // Long Click
+            sword.SpecialAttack();
         }
     }
 
     void FixedUpdate()
     {
         MovePlayer();
-    } 
+    }
 
     void RotatePlayer()
     {
@@ -63,7 +78,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
             }
-            
+
         }
 
     }
@@ -81,7 +96,7 @@ public class PlayerController : MonoBehaviour
         rigidBody.AddForce(movement *speed * speedModifier);
 
         Dodge();
-        
+
     }
 
     void Dodge()
@@ -122,14 +137,21 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateHp(int damage)
     {
-        hp = hp - damage;
-        hpSlider.value = hp;
+        //if(dashTime != 5 && damage > 0)
+        //{
 
-        if (hp <= 0 )
+        //}
+        //else
+        //{
+            hp = hp - damage;
+            hpSlider.value = hp;
+        //}
+
+        if(hp <= 0 )
         {
             //GAMEOVER
             Debug.Log("GAMEOVER");
         }
     }
-   
+
 }
