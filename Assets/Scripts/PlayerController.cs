@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     float temps;
     public Animator animator;
     bool isDead = false;
+    public GameObject gameOverScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -175,7 +176,7 @@ public class PlayerController : MonoBehaviour
             //GAMEOVER
             animator.SetTrigger("Die");
             isDead = true;
-            Debug.Log("GAMEOVER");
+            gameOverScreen.SetActive(true);
         }
         else
         {
