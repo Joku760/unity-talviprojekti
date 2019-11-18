@@ -6,12 +6,14 @@ public class ShowMessage : MonoBehaviour
 {
     public GameObject objekti;
     Transform player;
+    GameObject HUD;
     bool hover = false;
     bool open = false;
 
     private void Start()
     {
         player = GameObject.Find("Player").transform;
+        HUD = GameObject.Find("HUD");
     }
     private void OnMouseEnter()
     {
@@ -29,12 +31,14 @@ public class ShowMessage : MonoBehaviour
         {
             objekti.gameObject.SetActive(true);
             open = true;
+            HUD.gameObject.SetActive(false);
         }
 
         if (Input.anyKey && open)
         {
             objekti.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
+            HUD.gameObject.SetActive(true);
         }
     }
     bool HaveLineOfSight()
