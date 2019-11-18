@@ -7,10 +7,8 @@ public class EnemyController : MonoBehaviour
 {
 
     Transform player;
-    GameObject playerObject;
     NavMeshAgent nav;
     PlayerController playerController;
-    bool playerInRange;
 
     public float timeBetweenAttacks = 0.5f;     
     public int attackDamage = 10;
@@ -20,28 +18,21 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerObject = GameObject.FindGameObjectWithTag("Player");
         nav = GetComponent<NavMeshAgent>();
         playerController = player.GetComponent<PlayerController>();
     }
 
-    void OnTriggerEnter(Collider other)
+    bool InFront()
     {
-        // If the entering collider is the player...
-        if (other.gameObject == playerObject)
-        {
-            playerInRange = true;
-        }
-    }
 
+        Vector3 directionToTarget = transform.position - player.position;
+        float distance = directionToTarget.magnitude;
 
-    void OnTriggerExit(Collider other)
-    {
-        // If the exiting collider is the player...
-        if (other.gameObject == playerObject)
+        if (distance < 0.6)
         {
-            playerInRange = false;
+            return true;
         }
+        return false;
     }
 
     // Update is called once per frame
@@ -51,7 +42,7 @@ public class EnemyController : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= timeBetweenAttacks && playerInRange)
+        if (timer >= timeBetweenAttacks && InFront())
         {
             Attack();
         }
