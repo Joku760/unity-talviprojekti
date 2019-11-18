@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public int attackDamage = 10;
     float timer;
     int hp = 100;
+    bool isAlive = true;
 
     void Awake()
     {
@@ -38,7 +39,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(player.position);
+        if (isAlive)
+        {
+            nav.SetDestination(player.position);
+        }
 
         timer += Time.deltaTime;
 
@@ -62,6 +66,7 @@ public class EnemyController : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject, 5);
+            isAlive = false;
         }
     }
 }
