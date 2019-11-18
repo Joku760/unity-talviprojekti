@@ -6,6 +6,7 @@ public class Sword : MonoBehaviour
 {
     // Start is called before the first frame update
     Animator animator;
+    int lastAttackDmg;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -13,11 +14,13 @@ public class Sword : MonoBehaviour
 
     public void PerformAttack()
     {
+        lastAttackDmg = 10;
         animator.SetTrigger("Base_Attack");
     }
 
     public void SpecialAttack()
     {
+        lastAttackDmg = 25;
         animator.SetTrigger("Special_Attack");
     }
 
@@ -25,12 +28,13 @@ public class Sword : MonoBehaviour
     {
         if(other.tag != "Player")
         {
-            Debug.Log("Hit: " + other);
+            //Debug.Log("Hit: " + other);
         }
         
         if(other.tag == "Enemy")
         {
             //Do damage
+            other.gameObject.GetComponent<EnemyController>().UpdateHp(lastAttackDmg);
         }
 
         if(other.tag == "Breakable")
