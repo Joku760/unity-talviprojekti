@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public int hp = 100;
     public Slider hpSlider;
     float temps;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         sword = FindObjectOfType<Sword>();
         speedModifier = 1;
         dashTime = 5;
+        //animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -45,12 +47,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.5)
         {
             // short Click
+            animator.SetTrigger("Base_Attack");
             sword.PerformAttack();
         }
 
         if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.5)
         {
             // Long Click
+            animator.SetTrigger("Special_Attack");
             sword.SpecialAttack();
         }
     }
@@ -94,6 +98,15 @@ public class PlayerController : MonoBehaviour
         movement = Vector3.ClampMagnitude(movement, 1);
 
         rigidBody.AddForce(movement *speed * speedModifier);
+        if(Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
+        {
+            animator.SetTrigger("Run");
+        }
+        else
+        {
+            animator.SetTrigger("Stop_Moving");
+        }
+        
 
         Dodge();
 

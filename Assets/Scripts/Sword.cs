@@ -5,23 +5,23 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     // Start is called before the first frame update
-    Animator animator;
+    //Animator animator;
     int lastAttackDmg;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     public void PerformAttack()
     {
         lastAttackDmg = 10;
-        animator.SetTrigger("Base_Attack");
+        //animator.SetTrigger("Base_Attack");
     }
 
     public void SpecialAttack()
     {
         lastAttackDmg = 25;
-        animator.SetTrigger("Special_Attack");
+        //animator.SetTrigger("Special_Attack");
     }
 
     private void OnTriggerEnter(Collider other)
