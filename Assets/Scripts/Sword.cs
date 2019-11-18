@@ -25,12 +25,13 @@ public class Sword : MonoBehaviour
     {
         if(other.tag != "Player")
         {
-            Debug.Log("Hit: " + other);
+            //Debug.Log("Hit: " + other);
         }
         
         if(other.tag == "Enemy")
         {
             //Do damage
+            other.gameObject.GetComponent<EnemyController>().UpdateHp(10);
         }
 
         if(other.tag == "Breakable")
