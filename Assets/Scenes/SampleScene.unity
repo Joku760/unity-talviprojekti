@@ -4776,14 +4776,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.023
       objectReference: {fileID: 0}
-    - target: {fileID: 1349293230257724, guid: 19862ba99da959f4aa655af92532f08d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 199486541083762644, guid: 19862ba99da959f4aa655af92532f08d,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349293230257724, guid: 19862ba99da959f4aa655af92532f08d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19862ba99da959f4aa655af92532f08d, type: 3}
@@ -10266,6 +10266,30 @@ PrefabInstance:
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 457179803}
+    - target: {fileID: 4090093965841387, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090093965841387, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090093965841387, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090093965841387, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090093965841387, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090093965841387, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.007
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
 --- !u!1 &1350598381 stripped
@@ -15965,15 +15989,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7619087846804341490, guid: a665a6a7617dec047a62ff9bcc99ee78,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 5221374181170348433, guid: a665a6a7617dec047a62ff9bcc99ee78,
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619087846804341490, guid: a665a6a7617dec047a62ff9bcc99ee78,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7619087846804341490, guid: a665a6a7617dec047a62ff9bcc99ee78,
         type: 3}

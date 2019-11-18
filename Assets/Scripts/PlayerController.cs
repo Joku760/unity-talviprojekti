@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public Slider hpSlider;
     float temps;
     public Animator animator;
+    bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +35,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePlayer();
-        RotateCamera();
+        if(isDead == false)
+        {
+            RotatePlayer();
+            RotateCamera();
+        }
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -61,7 +65,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if(isDead == false)
+        {
+            MovePlayer();
+        }  
     }
 
     void RotatePlayer()
@@ -89,6 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
+        
         cameraRotator.transform.position = transform.position;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -96,6 +104,8 @@ public class PlayerController : MonoBehaviour
         movement = Camera.main.transform.TransformDirection(movement);
         movement.y = 0.0f;
         movement = Vector3.ClampMagnitude(movement, 1);
+        
+       
 
         rigidBody.AddForce(movement *speed * speedModifier);
         if(Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
@@ -150,21 +160,28 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateHp(int damage)
     {
-        //if(dashTime != 5 && damage > 0)
-        //{
+        if(dashTime != 5 && damage > 0)
+        {
 
-        //}
-        //else
-        //{
+        }
+        else
+        {
             hp = hp - damage;
             hpSlider.value = hp;
-        //}
+        }
 
         if(hp <= 0 )
         {
             //GAMEOVER
+            animator.SetTrigger("Die");
+            isDead = true;
             Debug.Log("GAMEOVER");
         }
+        else
+        {
+            animator.SetTrigger("Get_Hit");
+        }
     }
+
 
 }
