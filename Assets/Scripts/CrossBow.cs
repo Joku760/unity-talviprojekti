@@ -10,12 +10,13 @@ public class CrossBow : MonoBehaviour
     public Transform projectileSpawn;
     int timer;
     int timeBetweenAttacks = 250;
+    public Animator animator;
     void Start()
     {
 
     }
 
-    private void Update()
+    void Update()
     {
         timer++;
     }
@@ -25,13 +26,17 @@ public class CrossBow : MonoBehaviour
         if (timer >= timeBetweenAttacks)
         {
             timer = 0;
-            Quaternion rotation = projectileSpawn.rotation;
-            rotation *= Quaternion.Euler(0, 90, 0);
-            GameObject arrowInstance = (GameObject)Instantiate(arrow, projectileSpawn.position, rotation);
-            arrowInstance.GetComponent<Arrow>().Direction = projectileSpawn.forward;
-        }
-       
+            animator.SetTrigger("Shoot_Attack");
+            
+        }   
     }
 
+    public void Shoot()
+    {
+        Quaternion rotation = projectileSpawn.rotation;
+        rotation *= Quaternion.Euler(0, 90, 0);
+        GameObject arrowInstance = (GameObject)Instantiate(arrow, projectileSpawn.position, rotation);
+        arrowInstance.GetComponent<Arrow>().Direction = projectileSpawn.forward;
+    }
 
 }

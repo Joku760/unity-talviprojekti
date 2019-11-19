@@ -183,7 +183,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4791231850146073}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.7582479, y: 170.75923, z: -167.12192}
+  m_LocalEulerAnglesHint: {x: 0.75824815, y: 170.75923, z: -167.12192}
 --- !u!1 &1014225713356069
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +649,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4102358460969399}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -49.06292, y: 75.79718, z: -45.27074}
+  m_LocalEulerAnglesHint: {x: -49.0404, y: 75.83648, z: -45.252296}
 --- !u!1 &1245328121081233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,7 +1230,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4635522115741795}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -8.600666, y: -12.655118, z: -2.5958328}
+  m_LocalEulerAnglesHint: {x: -8.600666, y: -12.655118, z: -2.5958326}
 --- !u!1 &1433748210617317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1291,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4102358460969399}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 39.271255, y: -100.42453, z: 81.37458}
+  m_LocalEulerAnglesHint: {x: 39.2712, y: -100.43352, z: 81.374596}
 --- !u!1 &1450982068296313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,7 +1699,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4182946913990519}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0}
+  m_LocalEulerAnglesHint: {x: 1.0071505e-17, y: 6.808755e-18, z: 0.042654924}
 --- !u!1 &1602450744770773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2080,6 @@ GameObject:
   - component: {fileID: 4090093965841387}
   - component: {fileID: 33718560724899633}
   - component: {fileID: 23882414111844455}
-  - component: {fileID: 4214656955148723761}
   m_Layer: 8
   m_Name: PolyartCrossbow
   m_TagString: Untagged
@@ -2149,20 +2148,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4214656955148723761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787526769848381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968778c88b8e21c4badca1b1015015f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrow: {fileID: 7271143213289655450, guid: e27fc127b06c4084da96d2713a2c1177, type: 3}
-  projectileSpawn: {fileID: 5908887331525901602}
 --- !u!1 &1829858991562225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,6 +2188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4158095691500703}
   - component: {fileID: 95905399090687785}
+  - component: {fileID: 206051035}
   m_Layer: 8
   m_Name: RPGHeroPolyart
   m_TagString: Untagged
@@ -2245,6 +2231,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &206051035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835884652850861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968778c88b8e21c4badca1b1015015f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 7271143213289655450, guid: e27fc127b06c4084da96d2713a2c1177, type: 3}
+  projectileSpawn: {fileID: 5908887331525901602}
+  animator: {fileID: 95905399090687785}
 --- !u!1 &1907505830611681
 GameObject:
   m_ObjectHideFlags: 0

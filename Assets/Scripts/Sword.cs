@@ -20,7 +20,7 @@ public class Sword : MonoBehaviour
 
     public void SpecialAttack()
     {
-        lastAttackDmg = 25;
+        lastAttackDmg = 15;
         //animator.SetTrigger("Special_Attack");
     }
 
