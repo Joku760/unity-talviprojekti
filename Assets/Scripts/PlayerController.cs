@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     bool isDead = false;
     public GameObject gameOverScreen;
+    public int gold = 0;
+    public int healthPotions = 0;
+    Text potionText;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour
         crossBow = FindObjectOfType<CrossBow>();
         speedModifier = 1;
         dashTime = 5;
+        potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
+        //animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -42,7 +47,7 @@ public class PlayerController : MonoBehaviour
             RotatePlayer();
             RotateCamera();
             CheckAttackInput();
-        }  
+        }
     }
 
     void FixedUpdate()
@@ -50,7 +55,7 @@ public class PlayerController : MonoBehaviour
         if(isDead == false)
         {
             MovePlayer();
-        }  
+        }
     }
 
     void RotatePlayer()
@@ -78,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
-        
+
         cameraRotator.transform.position = transform.position;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -86,8 +91,8 @@ public class PlayerController : MonoBehaviour
         movement = Camera.main.transform.TransformDirection(movement);
         movement.y = 0.0f;
         movement = Vector3.ClampMagnitude(movement, 1);
-        
-       
+
+
 
         rigidBody.AddForce(movement *speed * speedModifier);
         if(Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
@@ -98,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Stop_Moving");
         }
-        
+
 
         Dodge();
 
@@ -149,6 +154,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             hp = hp - damage;
+            if (hp > 100) { hp = 100; }
             hpSlider.value = hp;
         }
 
@@ -171,7 +177,7 @@ public class PlayerController : MonoBehaviour
         knock *= force;
         GetComponent<Rigidbody>().AddForce(knock);
     }
-    
+
     public void CheckAttackInput()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -196,6 +202,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             crossBow.PerformAttack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && hp < 100)
+        {
+            if(healthPotions > 0)
+            {
+                healthPotions--;
+                UpdateHp(-50);
+                potionText.text = "HP Pots: " + healthPotions;
+            }
         }
     }
 
