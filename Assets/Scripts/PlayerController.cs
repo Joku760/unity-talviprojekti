@@ -185,14 +185,14 @@ public class PlayerController : MonoBehaviour
             temps = Time.time;
         }
 
-        if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.5)
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.4)
         {
             // short Click
             animator.SetTrigger("Base_Attack");
             sword.PerformAttack();
         }
 
-        if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.5)
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.4)
         {
             // Long Click
             animator.SetTrigger("Special_Attack");
