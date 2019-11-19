@@ -184,5 +184,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Knockback(GameObject attacker, float force)
+    {
+        Vector3 knock = attacker.transform.forward;
+        knock *= force;
+        GetComponent<Rigidbody>().AddForce(knock);
+    }
+
 
 }

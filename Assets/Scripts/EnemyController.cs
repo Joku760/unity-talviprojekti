@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
 
     public float timeBetweenAttacks = 0.5f;     
     public int attackDamage = 10;
+    public int playerKnockbackForce = 500;
     float timer;
     int hp = 100;
     bool isAlive = true;
@@ -57,6 +58,7 @@ public class EnemyController : MonoBehaviour
         timer = 0f;
 
         playerController.UpdateHp(attackDamage);
+        playerController.Knockback(gameObject, playerKnockbackForce);
     }
 
     public void UpdateHp(int damage)

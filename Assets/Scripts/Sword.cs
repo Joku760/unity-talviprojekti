@@ -40,6 +40,7 @@ public class Sword : MonoBehaviour
         if(other.tag == "Breakable")
         {
             //Break object
+            Destroy(other.gameObject);
         }
     }
 }
