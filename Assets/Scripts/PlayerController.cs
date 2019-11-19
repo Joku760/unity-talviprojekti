@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverScreen;
     public int gold = 0;
     public int healthPotions = 0;
+    Text potionText;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         sword = FindObjectOfType<Sword>();
         speedModifier = 1;
         dashTime = 5;
+        potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
         //animator = GetComponentInChildren<Animator>();
     }
 
@@ -63,6 +65,16 @@ public class PlayerController : MonoBehaviour
             // Long Click
             animator.SetTrigger("Special_Attack");
             sword.SpecialAttack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && hp < 100)
+        {
+            if(healthPotions > 0)
+            {
+                healthPotions--;
+                UpdateHp(-50);
+                potionText.text = "HP Pots: " + healthPotions;
+            }
         }
     }
 
@@ -170,6 +182,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             hp = hp - damage;
+            if (hp > 100) { hp = 100; }
             hpSlider.value = hp;
         }
 
@@ -180,7 +193,7 @@ public class PlayerController : MonoBehaviour
             isDead = true;
             gameOverScreen.SetActive(true);
         }
-        else
+        if(damage > 0)
         {
             animator.SetTrigger("Get_Hit");
         }
