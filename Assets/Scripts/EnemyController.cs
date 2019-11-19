@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     Transform player;
     NavMeshAgent nav;
     PlayerController playerController;
-
+    public Animator animator;
     public float timeBetweenAttacks = 0.5f;     
     public int attackDamage = 10;
     public int playerKnockbackForce = 500;
@@ -43,22 +43,22 @@ public class EnemyController : MonoBehaviour
         if (isAlive)
         {
             nav.SetDestination(player.position);
-        }
 
-        timer += Time.deltaTime;
+            timer += Time.deltaTime;
 
-        if (timer >= timeBetweenAttacks && InFront())
-        {
-            Attack();
+            if (timer >= timeBetweenAttacks && InFront())
+            {
+                Attack();
+            }
         }
     }
 
     void Attack()
     {
-        timer = 0f;
-
+        animator.SetTrigger("Attack");
         playerController.UpdateHp(attackDamage);
         playerController.Knockback(gameObject, playerKnockbackForce);
+        timer = 0f;
     }
 
     public void UpdateHp(int damage)
@@ -67,8 +67,9 @@ public class EnemyController : MonoBehaviour
 
         if (hp <= 0)
         {
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 3);
             isAlive = false;
+            animator.SetTrigger("Death");
         }
     }
 }
