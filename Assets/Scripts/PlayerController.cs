@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public GameObject cameraRotator;
     Sword sword;
+    CrossBow crossBow;
     public int hp = 100;
     public Slider hpSlider;
     float temps;
@@ -28,9 +29,9 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         sword = FindObjectOfType<Sword>();
+        crossBow = FindObjectOfType<CrossBow>();
         speedModifier = 1;
         dashTime = 5;
-        //animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -40,28 +41,8 @@ public class PlayerController : MonoBehaviour
         {
             RotatePlayer();
             RotateCamera();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
-
-
-            temps = Time.time;
-        }
-
-        if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.5)
-        {
-            // short Click
-            animator.SetTrigger("Base_Attack");
-            sword.PerformAttack();
-        }
-
-        if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.5)
-        {
-            // Long Click
-            animator.SetTrigger("Special_Attack");
-            sword.SpecialAttack();
-        }
+            CheckAttackInput();
+        }  
     }
 
     void FixedUpdate()
@@ -178,7 +159,7 @@ public class PlayerController : MonoBehaviour
             isDead = true;
             gameOverScreen.SetActive(true);
         }
-        else
+        else if (damage > 0)
         {
             animator.SetTrigger("Get_Hit");
         }
@@ -190,6 +171,32 @@ public class PlayerController : MonoBehaviour
         knock *= force;
         GetComponent<Rigidbody>().AddForce(knock);
     }
+    
+    public void CheckAttackInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            temps = Time.time;
+        }
 
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.5)
+        {
+            // short Click
+            animator.SetTrigger("Base_Attack");
+            sword.PerformAttack();
+        }
+
+        if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.5)
+        {
+            // Long Click
+            animator.SetTrigger("Special_Attack");
+            sword.SpecialAttack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            crossBow.PerformAttack();
+        }
+    }
 
 }

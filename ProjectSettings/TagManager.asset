@@ -7,6 +7,9 @@ TagManager:
   - Weapon
   - Breakable
   - Enemy
+  - enemyBug
+  - Castle
+  - Arrow
   layers:
   - Default
   - TransparentFX
