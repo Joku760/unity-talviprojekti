@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     bool isDead = false;
     public GameObject gameOverScreen;
+    public int gold = 0;
+    public int healthPotions = 0;
 
     // Start is called before the first frame update
     void Start()
