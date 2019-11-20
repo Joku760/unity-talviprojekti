@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Slider hpSlider;
     float temps;
     public Animator animator;
-    bool isDead = false;
+    public bool isDead = false;
     public GameObject gameOverScreen;
     public int gold = 0;
     public int healthPotions = 0;

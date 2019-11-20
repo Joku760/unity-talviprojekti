@@ -81,7 +81,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7619087846804341490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07972399b1c2b9d4fa1dfbfa4188a338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 0.5
-  attackDamage: 10
+  animator: {fileID: 0}
+  timeBetweenAttacks: 1.8
+  attackDamage: 15
   playerKnockbackForce: 500
 --- !u!1001 &4361353258247031510
 PrefabInstance:
@@ -208,6 +209,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1548466523428658, guid: 3749b9edee740c44ea7455a4fa1b7382, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114795339589024464, guid: 3749b9edee740c44ea7455a4fa1b7382,
         type: 3}
       propertyPath: m_Enabled
@@ -218,11 +223,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1548466523428658, guid: 3749b9edee740c44ea7455a4fa1b7382, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 23034285152922374, guid: 3749b9edee740c44ea7455a4fa1b7382,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 23034285152922374, guid: 3749b9edee740c44ea7455a4fa1b7382,
+    - target: {fileID: 114734922601410596, guid: 3749b9edee740c44ea7455a4fa1b7382,
         type: 3}
       propertyPath: m_Enabled
       value: 0

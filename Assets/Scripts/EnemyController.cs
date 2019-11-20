@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 {
 
     Transform player;
+    Transform enemy;
     NavMeshAgent nav;
     PlayerController playerController;
     public Animator animator;
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         nav = GetComponent<NavMeshAgent>();
         playerController = player.GetComponent<PlayerController>();
     }
@@ -40,7 +42,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAlive)
+        if (isAlive && playerController.isDead == false)
         {
             nav.SetDestination(player.position);
 
@@ -50,6 +52,14 @@ public class EnemyController : MonoBehaviour
             {
                 Attack();
             }
+        }
+        else if (playerController.isDead)
+        {
+            animator.SetTrigger("Victory");
+        }
+        else 
+        {
+            nav.SetDestination(enemy.position);
         }
     }
 
