@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour
 {
     Transform player;
     Text goldText;
+    Text shopGoldText;
     Text potionText;
     bool hover = false;
     public GameObject hud;
@@ -17,7 +18,8 @@ public class Shop : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").transform;
-        goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
+        goldText = GameObject.Find("GoldAmount").GetComponent<Text>(); 
+        
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
     }
 
@@ -40,11 +42,11 @@ public class Shop : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight())
         {
-            Debug.Log("SHOP");
             hud.SetActive(false);
             shopMenu.SetActive(true);
             shopOpen = true;
-            
+            shopGoldText = GameObject.Find("ShopGold").GetComponent<Text>();
+            shopGoldText.text = "Gold: " + GameObject.Find("Player").GetComponent<PlayerController>().gold.ToString();
         }
     }
 
@@ -81,7 +83,20 @@ public class Shop : MonoBehaviour
             GameObject.Find("Player").GetComponent<PlayerController>().gold = GameObject.Find("Player").GetComponent<PlayerController>().gold - potionPrice;
             GameObject.Find("Player").GetComponent<PlayerController>().healthPotions++;
             goldText.text = "Gold: " + GameObject.Find("Player").GetComponent<PlayerController>().gold.ToString();
+            shopGoldText.text = "Gold: " + GameObject.Find("Player").GetComponent<PlayerController>().gold.ToString();
             potionText.text = "HP Pots: " + GameObject.Find("Player").GetComponent<PlayerController>().healthPotions.ToString();
+        }
+    }
+
+    public void Upgrade1()
+    {
+        int gold = GameObject.Find("Player").GetComponent<PlayerController>().gold = GameObject.Find("Player").GetComponent<PlayerController>().gold;
+        if (gold >= 50)
+        {
+            GameObject.Find("Player").GetComponent<PlayerController>().gold = GameObject.Find("Player").GetComponent<PlayerController>().gold - 50;
+            goldText.text = "Gold: " + GameObject.Find("Player").GetComponent<PlayerController>().gold.ToString();
+            shopGoldText.text = "Gold: " + GameObject.Find("Player").GetComponent<PlayerController>().gold.ToString();
+            GameObject.Find("Player").GetComponent<PlayerController>().armor = GameObject.Find("Player").GetComponent<PlayerController>().armor + 10;
         }
     }
 }
