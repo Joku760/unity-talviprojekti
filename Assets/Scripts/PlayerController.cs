@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject cameraRotator;
     Sword sword;
     CrossBow crossBow;
+    public int maxHp = 100;
     public int hp = 100;
     public Slider hpSlider;
     float temps;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public int gold = 0;
     public int healthPotions = 0;
     Text potionText;
+    public int armor = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -147,14 +149,20 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateHp(int damage)
     {
-        if(dashTime != 5 && damage > 0)
+        if (dashTime != 5 && damage > 0)
         {
 
         }
         else
         {
+            if(damage > 0)
+            {
+                damage = damage - armor;
+                if (damage < 0) { damage = 0; }
+            }
+            
             hp = hp - damage;
-            if (hp > 100) { hp = 100; }
+            if (hp > maxHp) { hp = maxHp; }
             hpSlider.value = hp;
         }
 
