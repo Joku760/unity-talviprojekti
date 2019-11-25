@@ -103,7 +103,6 @@ public class Shop : MonoBehaviour
 
     public void Upgrade1()
     {
-        Debug.Log(upgrade1.targetObject + " " + upgrade1.targetValue + " " + upgrade1.value);
         int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade1.price)
         {
@@ -127,7 +126,6 @@ public class Shop : MonoBehaviour
 
     public void Upgrade2()
     {
-        Debug.Log(upgrade2.targetObject + " " + upgrade2.targetValue + " " + upgrade2.value);
         int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade2.price)
         {
@@ -150,7 +148,6 @@ public class Shop : MonoBehaviour
     }
     public void Upgrade3()
     {
-        Debug.Log(upgrade3.targetObject + " " + upgrade3.targetValue +" " + upgrade3.value);
         int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade3.price)
         {

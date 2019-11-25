@@ -42,7 +42,6 @@ public class CrossBow : MonoBehaviour
 
     public void updateUpgrade(string valueTarget, int value)
     {
-        Debug.Log(valueTarget + " " + value);
         if (valueTarget == "damage")
         {
             damage = damage + value;

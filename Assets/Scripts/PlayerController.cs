@@ -225,7 +225,6 @@ public class PlayerController : MonoBehaviour
 
     public void updateUpgrade(string valueTarget, int value)
     {
-        Debug.Log(valueTarget + " " + value);
         if (valueTarget == "armor")
         {
             armor = armor + value;

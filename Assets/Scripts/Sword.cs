@@ -6,11 +6,7 @@ public class Sword : MonoBehaviour
 {
     int lastAttackDmg;
     public int damage = 10;
-    public double specialMultiplier = 1.5;
-    void Start()
-    {
-
-    }
+    public int specialMultiplier = 5;
 
     public void PerformAttack()
     {
@@ -19,12 +15,11 @@ public class Sword : MonoBehaviour
 
     public void SpecialAttack()
     {
-        lastAttackDmg = Mathf.RoundToInt((float)(damage * specialMultiplier));
+        lastAttackDmg = damage + specialMultiplier;
     }
 
     public void updateUpgrade(string valueTarget, int value)
     {
-        Debug.Log(valueTarget + " " + value);
         if(valueTarget == "damage")
         {
             damage = damage + value;

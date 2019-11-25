@@ -15,9 +15,9 @@ public class UpgradeTable
         upgrades.Add(new Upgrade("Armor plating", "Grants 2 armor", 50, "player", "armor", 2));
         upgrades.Add(new Upgrade("Boots of speed", "Increase movement speed", 65, "player", "speed", 1));
         upgrades.Add(new Upgrade("Gauntlets of strenght", "Increase melee damage", 100, "sword", "damage", 2));
-        upgrades.Add(new Upgrade("Special gem", "Strenghtens special attacks", 80, "sword", "specialMultiplier", 1));
+        upgrades.Add(new Upgrade("Special gem", "Strenghtens special attacks", 80, "sword", "specialMultiplier", 2));
         upgrades.Add(new Upgrade("Barbed arrows", "Increase crossbow damage", 50, "crossBow", "damage", 5));
-        upgradeCount = 6;
+        upgradeCount = upgrades.Count;
     }
 }
 
