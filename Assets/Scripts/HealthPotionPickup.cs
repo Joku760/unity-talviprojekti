@@ -6,16 +6,19 @@ using UnityEngine.UI;
 public class HealthPotionPickup : MonoBehaviour
 {
     bool hover = false;
-    Transform player;
+    GameObject player;
     Text potionText;
+    GameObject saveLoad;
     AudioSource audioSource;
     public AudioClip potion;
     MeshRenderer render;
 
     void Start()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Player");
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
+        saveLoad = GameObject.Find("SaveLoad");
+        saveLoad.GetComponent<SaveAndLoad>().PickupToList(this.gameObject);
         audioSource = GetComponent<AudioSource>();
         render = GetComponent<MeshRenderer>();
     }
@@ -26,8 +29,8 @@ public class HealthPotionPickup : MonoBehaviour
             GivePotion();
             audioSource.clip = potion;
             audioSource.Play();
-            render.enabled = false;
-            Destroy(this.gameObject, audioSource.clip.length);
+            saveLoad.GetComponent<SaveAndLoad>().PickupToDelete(this.gameObject.transform.position);
+            gameObject.SetActive(false);
         }
     }
     private void OnMouseEnter()
@@ -54,7 +57,7 @@ public class HealthPotionPickup : MonoBehaviour
     }
     void GivePotion()
     {
-        GameObject.Find("Player").GetComponent<PlayerController>().healthPotions++;
-        potionText.text = "HP Pots: " + GameObject.Find("Player").GetComponent<PlayerController>().healthPotions.ToString();
+        player.GetComponent<PlayerController>().healthPotions++;
+        potionText.text = "HP Pots: " + player.GetComponent<PlayerController>().healthPotions.ToString();
     }
 }
