@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
             if(damage > 0)
             {
                 damage = damage - armor;
-                if (damage < 0) { damage = 0; }
+                if (damage < 5) { damage = 5; }
             }
             
             hp = hp - damage;
@@ -223,4 +223,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void updateUpgrade(string valueTarget, int value)
+    {
+        Debug.Log(valueTarget + " " + value);
+        if (valueTarget == "armor")
+        {
+            armor = armor + value;
+        }
+        else if(valueTarget == "speed")
+        {
+            speed = speed + value;
+        }
+        else if(valueTarget == "maxHp")
+        {
+            maxHp = maxHp + value;
+        }
+    }
 }

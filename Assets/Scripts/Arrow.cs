@@ -8,11 +8,14 @@ public class Arrow : MonoBehaviour
     public Vector3 Direction;
     public float range = 30f;
     public int damage = 20;
+    CrossBow crossBow;
     Vector3 spawnPosition;
     void Start()
     {
         spawnPosition = transform.position;
         GetComponent<Rigidbody>().AddForce(Direction * 40f);
+        crossBow = FindObjectOfType<CrossBow>();
+        damage = crossBow.damage;
     }
 
     // Update is called once per frame

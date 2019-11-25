@@ -22,6 +22,19 @@ public class Sword : MonoBehaviour
         lastAttackDmg = Mathf.RoundToInt((float)(damage * specialMultiplier));
     }
 
+    public void updateUpgrade(string valueTarget, int value)
+    {
+        Debug.Log(valueTarget + " " + value);
+        if(valueTarget == "damage")
+        {
+            damage = damage + value;
+        }
+        else if (valueTarget == "specialMultiplier")
+        {
+            specialMultiplier = specialMultiplier + value;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag != "Player")
