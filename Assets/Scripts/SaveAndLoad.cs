@@ -83,7 +83,6 @@ public class SaveAndLoad : MonoBehaviour
     {
         String vectorString = pos.ToString();
         pickupsDelete.Add(vectorString);
-        Debug.Log(vectorString);
     }
 
     public void PickupToList(GameObject obj)
