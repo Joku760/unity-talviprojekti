@@ -28,6 +28,13 @@ public class PlayerController : MonoBehaviour
     public int healthPotions = 0;
     Text potionText;
     public int armor = 0;
+    AudioSource audioSource;
+    public AudioClip swordslash;
+    public AudioClip specialslash;
+    public AudioClip dash;
+    public AudioClip drink;
+    public AudioClip hit;
+    public AudioClip crossbow;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +45,7 @@ public class PlayerController : MonoBehaviour
         speedModifier = 1;
         dashTime = 5;
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
+        audioSource = GetComponent<AudioSource>();
         //animator = GetComponentInChildren<Animator>();
     }
 
@@ -117,6 +125,8 @@ public class PlayerController : MonoBehaviour
         {
             dashTime = 0;
             dashCooldown = 0;
+            audioSource.clip = dash;
+            audioSource.Play();
         }
 
         if (dashTime < 5)
@@ -158,7 +168,7 @@ public class PlayerController : MonoBehaviour
             if(damage > 0)
             {
                 damage = damage - armor;
-                if (damage < 0) { damage = 0; }
+                if (damage < 5) { damage = 5; }
             }
             
             hp = hp - damage;
@@ -176,6 +186,8 @@ public class PlayerController : MonoBehaviour
         else if (damage > 0)
         {
             animator.SetTrigger("Get_Hit");
+            audioSource.clip = hit;
+            audioSource.Play();
         }
     }
 
@@ -198,6 +210,11 @@ public class PlayerController : MonoBehaviour
             // short Click
             animator.SetTrigger("Base_Attack");
             sword.PerformAttack();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = swordslash;
+                audioSource.Play();
+            }
         }
 
         if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.4)
@@ -205,11 +222,18 @@ public class PlayerController : MonoBehaviour
             // Long Click
             animator.SetTrigger("Special_Attack");
             sword.SpecialAttack();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = specialslash;
+                audioSource.Play();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             crossBow.PerformAttack();
+            audioSource.clip = crossbow;
+            audioSource.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.X) && hp < 100)
@@ -219,8 +243,25 @@ public class PlayerController : MonoBehaviour
                 healthPotions--;
                 UpdateHp(-50);
                 potionText.text = "HP Pots: " + healthPotions;
+                audioSource.clip = drink;
+                audioSource.Play();
             }
         }
     }
 
+    public void updateUpgrade(string valueTarget, int value)
+    {
+        if (valueTarget == "armor")
+        {
+            armor = armor + value;
+        }
+        else if(valueTarget == "speed")
+        {
+            speed = speed + value;
+        }
+        else if(valueTarget == "maxHp")
+        {
+            maxHp = maxHp + value;
+        }
+    }
 }

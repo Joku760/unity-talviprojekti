@@ -10,6 +10,8 @@ public class GoldPickup : MonoBehaviour
     int addGold;
     Text goldText;
     GameObject saveLoad;
+    AudioSource audioSource;
+    public AudioClip money;
 
     void Start()
     {
@@ -18,12 +20,15 @@ public class GoldPickup : MonoBehaviour
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
         saveLoad = GameObject.Find("SaveLoad");
         saveLoad.GetComponent<SaveAndLoad>().PickupToList(this.gameObject);
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
         if (Input.GetKey(KeyCode.F) && hover && HaveLineOfSight())
         {
             GiveGold();
+            audioSource.clip = money;
+            audioSource.Play();
             saveLoad.GetComponent<SaveAndLoad>().PickupToDelete(this.gameObject.transform.position);
             gameObject.SetActive(false);
         }

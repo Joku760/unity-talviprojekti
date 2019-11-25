@@ -6,11 +6,13 @@ public class OpenChest : MonoBehaviour
 {
     GameObject player;
     bool hover = false;
-    
+    AudioSource audioSource;
+    public AudioClip chest;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.Find("Player");
-
     }
     void Update()
     {
@@ -19,6 +21,8 @@ public class OpenChest : MonoBehaviour
             var hinge = GetComponent<HingeJoint>();
             //var motor = hinge.motor;
             hinge.useMotor = true;
+            audioSource.clip = chest;
+            audioSource.Play();
         }
     }
     private void OnMouseEnter()

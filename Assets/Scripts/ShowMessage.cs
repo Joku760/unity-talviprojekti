@@ -9,11 +9,14 @@ public class ShowMessage : MonoBehaviour
     GameObject HUD;
     bool hover = false;
     bool open = false;
+    AudioSource audioSource;
+    public AudioClip paper;
 
     private void Start()
     {
         player = GameObject.Find("Player").transform;
         HUD = GameObject.Find("HUD");
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnMouseEnter()
     {
@@ -32,6 +35,8 @@ public class ShowMessage : MonoBehaviour
             objekti.gameObject.SetActive(true);
             open = true;
             HUD.gameObject.SetActive(false);
+            audioSource.clip = paper;
+            audioSource.Play();
         }
 
         if (Input.anyKey && open)

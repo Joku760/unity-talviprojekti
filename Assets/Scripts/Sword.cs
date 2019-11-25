@@ -6,10 +6,13 @@ public class Sword : MonoBehaviour
 {
     int lastAttackDmg;
     public int damage = 10;
-    public double specialMultiplier = 1.5;
+    public int specialMultiplier = 5;
+    AudioSource audioSource;
+    public AudioClip glass;
+
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PerformAttack()
@@ -19,7 +22,19 @@ public class Sword : MonoBehaviour
 
     public void SpecialAttack()
     {
-        lastAttackDmg = Mathf.RoundToInt((float)(damage * specialMultiplier));
+        lastAttackDmg = damage + specialMultiplier;
+    }
+
+    public void updateUpgrade(string valueTarget, int value)
+    {
+        if(valueTarget == "damage")
+        {
+            damage = damage + value;
+        }
+        else if (valueTarget == "specialMultiplier")
+        {
+            specialMultiplier = specialMultiplier + value;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +43,7 @@ public class Sword : MonoBehaviour
         {
             //Debug.Log("Hit: " + other);
         }
-        
+
         if(other.tag == "Enemy")
         {
             //Do damage
@@ -39,6 +54,8 @@ public class Sword : MonoBehaviour
         {
             //Break object
             Destroy(other.gameObject);
+            audioSource.clip = glass;
+            audioSource.Play();
         }
     }
 }

@@ -11,6 +11,7 @@ public class CrossBow : MonoBehaviour
     int timer;
     int timeBetweenAttacks = 250;
     public Animator animator;
+    public int damage = 20;
     void Start()
     {
 
@@ -37,6 +38,14 @@ public class CrossBow : MonoBehaviour
         rotation *= Quaternion.Euler(0, 90, 0);
         GameObject arrowInstance = (GameObject)Instantiate(arrow, projectileSpawn.position, rotation);
         arrowInstance.GetComponent<Arrow>().Direction = projectileSpawn.forward;
+    }
+
+    public void updateUpgrade(string valueTarget, int value)
+    {
+        if (valueTarget == "damage")
+        {
+            damage = damage + value;
+        }
     }
 
 }
