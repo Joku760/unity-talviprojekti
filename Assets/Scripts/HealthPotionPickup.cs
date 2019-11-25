@@ -30,7 +30,9 @@ public class HealthPotionPickup : MonoBehaviour
             audioSource.clip = potion;
             audioSource.Play();
             saveLoad.GetComponent<SaveAndLoad>().PickupToDelete(this.gameObject.transform.position);
-            gameObject.SetActive(false);
+            render.enabled = false;
+            Destroy(this.gameObject, audioSource.clip.length);
+            //gameObject.SetActive(false);
         }
     }
     private void OnMouseEnter()

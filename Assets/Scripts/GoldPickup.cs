@@ -32,7 +32,9 @@ public class GoldPickup : MonoBehaviour
             audioSource.clip = money;
             audioSource.Play();
             saveLoad.GetComponent<SaveAndLoad>().PickupToDelete(this.gameObject.transform.position);
-            gameObject.SetActive(false);
+            render.enabled = false;
+            Destroy(this.gameObject, audioSource.clip.length);
+            //gameObject.SetActive(false);
         }
     }
     private void OnMouseEnter()
