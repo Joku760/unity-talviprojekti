@@ -10,12 +10,18 @@ public class Arrow : MonoBehaviour
     public int damage = 20;
     CrossBow crossBow;
     Vector3 spawnPosition;
+    AudioSource audioSource;
+    public AudioClip arrowhit;
+    public AudioClip glass;
+    public AudioClip enemyhit;
+
     void Start()
     {
         spawnPosition = transform.position;
         GetComponent<Rigidbody>().AddForce(Direction * 40f);
         crossBow = FindObjectOfType<CrossBow>();
         damage = crossBow.damage;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,6 +37,8 @@ public class Arrow : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
+            audioSource.clip = enemyhit;
+            audioSource.Play();
             collision.gameObject.GetComponent<EnemyController>().UpdateHp(damage);
             Destroy(gameObject);
         }
@@ -40,10 +48,20 @@ public class Arrow : MonoBehaviour
         }
         else if(collision.transform.tag == "Breakable")
         {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = glass;
+                audioSource.Play();
+            }
             Destroy(collision.gameObject);
         }
         else
         {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = arrowhit;
+                audioSource.Play();
+            }
             GetComponent<Rigidbody>().isKinematic = true;
             Destroy(gameObject, 10);
         }
