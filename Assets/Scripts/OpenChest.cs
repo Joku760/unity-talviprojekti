@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class OpenChest : MonoBehaviour
 {
+    GameObject player;
     bool hover = false;
     
     void Start()
     {
+        player = GameObject.Find("Player");
 
     }
     void Update()
@@ -26,5 +28,20 @@ public class OpenChest : MonoBehaviour
     private void OnMouseExit()
     {
         hover = false;
+    }
+
+    bool HaveLineOfSight()
+    {
+        RaycastHit hit;
+        Vector3 direction = player.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, direction, out hit, 1))
+        {
+            if (hit.transform.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

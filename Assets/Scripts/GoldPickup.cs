@@ -6,22 +6,26 @@ using UnityEngine.UI;
 public class GoldPickup : MonoBehaviour
 {
     bool hover = false;
-    Transform player;
+    GameObject player;
     int addGold;
     Text goldText;
+    GameObject saveLoad;
 
     void Start()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Player");
         addGold = Random.Range(14, 26);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
+        saveLoad = GameObject.Find("SaveLoad");
+        saveLoad.GetComponent<SaveAndLoad>().PickupToList(this.gameObject);
     }
     void Update()
     {
         if (Input.GetKey(KeyCode.F) && hover && HaveLineOfSight())
         {
             GiveGold();
-            Destroy(this.gameObject, 0);
+            saveLoad.GetComponent<SaveAndLoad>().PickupToDelete(this.gameObject.transform.position);
+            gameObject.SetActive(false);
         }
     }
     private void OnMouseEnter()
@@ -48,7 +52,7 @@ public class GoldPickup : MonoBehaviour
     }
     void GiveGold()
     {
-        GameObject.Find("Player").GetComponent<PlayerController>().gold = GameObject.Find("Player").GetComponent<PlayerController>().gold + addGold;
-        goldText.text = "Gold: " + GameObject.Find("Player").GetComponent<PlayerController>().gold.ToString();
+        player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold + addGold;
+        goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
     }
 }
