@@ -14,6 +14,7 @@ public class Arrow : MonoBehaviour
     public AudioClip arrowhit;
     public AudioClip glass;
     public AudioClip enemyhit;
+    MeshRenderer render;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class Arrow : MonoBehaviour
         crossBow = FindObjectOfType<CrossBow>();
         damage = crossBow.damage;
         audioSource = GetComponent<AudioSource>();
+        render = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -39,8 +41,9 @@ public class Arrow : MonoBehaviour
         {
             audioSource.clip = enemyhit;
             audioSource.Play();
+            render.enabled = false;
             collision.gameObject.GetComponent<EnemyController>().UpdateHp(damage);
-            Destroy(gameObject);
+            Destroy(gameObject, audioSource.clip.length);
         }
         else if( collision.transform.tag == "Arrow")
         {

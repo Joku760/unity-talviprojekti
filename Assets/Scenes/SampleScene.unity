@@ -13023,6 +13023,11 @@ PrefabInstance:
       propertyPath: hit
       value: 
       objectReference: {fileID: 8300000, guid: 61ba14dd0a46dd949aac29f0f554e819, type: 3}
+    - target: {fileID: 821875907577016999, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: enemyhit
+      value: 
+      objectReference: {fileID: 8300000, guid: c8a0985edc64e6740a7374d4241927b1, type: 3}
     - target: {fileID: 4812191743921961, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.104323216
@@ -14523,6 +14528,10 @@ PrefabInstance:
       propertyPath: glass
       value: 
       objectReference: {fileID: 8300000, guid: 61d2ff5fc612fbf43ad83cc4239aea33, type: 3}
+    - target: {fileID: 1759538463266698, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: enemyhit
+      value: 
+      objectReference: {fileID: 8300000, guid: c8a0985edc64e6740a7374d4241927b1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
 --- !u!1 &1350598381 stripped

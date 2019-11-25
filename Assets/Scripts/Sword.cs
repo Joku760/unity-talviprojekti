@@ -9,6 +9,7 @@ public class Sword : MonoBehaviour
     public int specialMultiplier = 5;
     AudioSource audioSource;
     public AudioClip glass;
+    public AudioClip enemyhit;
 
     void Start()
     {
@@ -48,6 +49,8 @@ public class Sword : MonoBehaviour
         {
             //Do damage
             other.gameObject.GetComponent<EnemyController>().UpdateHp(lastAttackDmg);
+            audioSource.clip = enemyhit;
+            audioSource.Play();
         }
 
         if(other.tag == "Breakable")
