@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     float timer;
     int hp = 100;
     bool isAlive = true;
+    AudioSource audioSource;
+    public AudioClip slash;
 
     void Awake()
     {
@@ -24,6 +26,7 @@ public class EnemyController : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         nav = GetComponent<NavMeshAgent>();
         playerController = player.GetComponent<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     bool InFront()
@@ -51,6 +54,8 @@ public class EnemyController : MonoBehaviour
             if (timer >= timeBetweenAttacks && InFront())
             {
                 Attack();
+                audioSource.clip = slash;
+                audioSource.Play();
             }
         }
         else if (playerController.isDead)

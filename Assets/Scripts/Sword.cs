@@ -7,9 +7,12 @@ public class Sword : MonoBehaviour
     int lastAttackDmg;
     public int damage = 10;
     public double specialMultiplier = 1.5;
+    AudioSource audioSource;
+    public AudioClip glass;
+
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PerformAttack()
@@ -39,6 +42,8 @@ public class Sword : MonoBehaviour
         {
             //Break object
             Destroy(other.gameObject);
+            audioSource.clip = glass;
+            audioSource.Play();
         }
     }
 }

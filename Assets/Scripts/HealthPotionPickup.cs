@@ -8,16 +8,22 @@ public class HealthPotionPickup : MonoBehaviour
     bool hover = false;
     Transform player;
     Text potionText;
+    AudioSource audioSource;
+    public AudioClip potion;
+
     void Start()
     {
         player = GameObject.Find("Player").transform;
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
         if (Input.GetKey(KeyCode.F) && hover && HaveLineOfSight())
         {
             GivePotion();
+            audioSource.clip = potion;
+            audioSource.Play();
             Destroy(this.gameObject, 0);
         }
     }

@@ -9,18 +9,23 @@ public class GoldPickup : MonoBehaviour
     Transform player;
     int addGold;
     Text goldText;
+    AudioSource audioSource;
+    public AudioClip money;
 
     void Start()
     {
         player = GameObject.Find("Player").transform;
         addGold = Random.Range(14, 26);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
         if (Input.GetKey(KeyCode.F) && hover && HaveLineOfSight())
         {
             GiveGold();
+            audioSource.clip = money;
+            audioSource.Play();
             Destroy(this.gameObject, 0);
         }
     }
