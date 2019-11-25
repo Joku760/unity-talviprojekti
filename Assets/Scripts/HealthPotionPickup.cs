@@ -10,21 +10,24 @@ public class HealthPotionPickup : MonoBehaviour
     Text potionText;
     AudioSource audioSource;
     public AudioClip potion;
+    MeshRenderer render;
 
     void Start()
     {
         player = GameObject.Find("Player").transform;
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
+        render = GetComponent<MeshRenderer>();
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.F) && hover && HaveLineOfSight())
+        if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight())
         {
             GivePotion();
             audioSource.clip = potion;
             audioSource.Play();
-            Destroy(this.gameObject, 0);
+            render.enabled = false;
+            Destroy(this.gameObject, audioSource.clip.length);
         }
     }
     private void OnMouseEnter()

@@ -11,6 +11,7 @@ public class GoldPickup : MonoBehaviour
     Text goldText;
     AudioSource audioSource;
     public AudioClip money;
+    MeshRenderer render;
 
     void Start()
     {
@@ -18,15 +19,17 @@ public class GoldPickup : MonoBehaviour
         addGold = Random.Range(14, 26);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
+        render = GetComponent<MeshRenderer>();
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.F) && hover && HaveLineOfSight())
+        if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight())
         {
             GiveGold();
             audioSource.clip = money;
             audioSource.Play();
-            Destroy(this.gameObject, 0);
+            render.enabled = false;
+            Destroy(this.gameObject, audioSource.clip.length);
         }
     }
     private void OnMouseEnter()
