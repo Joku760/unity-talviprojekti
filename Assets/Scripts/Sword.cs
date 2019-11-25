@@ -6,7 +6,7 @@ public class Sword : MonoBehaviour
 {
     int lastAttackDmg;
     public int damage = 10;
-    public double specialMultiplier = 5;
+    public int specialMultiplier = 5;
     AudioSource audioSource;
     public AudioClip glass;
 
