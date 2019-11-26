@@ -6,6 +6,7 @@ public class OpenChest : MonoBehaviour
 {
     GameObject player;
     bool hover = false;
+    bool isOpen = false;
     AudioSource audioSource;
     public AudioClip chest;
 
@@ -16,13 +17,14 @@ public class OpenChest : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.F) && hover)
+        if (Input.GetKey(KeyCode.F) && hover && isOpen == false)
         {
             var hinge = GetComponent<HingeJoint>();
             //var motor = hinge.motor;
             hinge.useMotor = true;
             audioSource.clip = chest;
             audioSource.Play();
+            isOpen = true;
         }
     }
     private void OnMouseEnter()
