@@ -12992,7 +12992,7 @@ PrefabInstance:
         type: 3}
       propertyPath: swordslash
       value: 
-      objectReference: {fileID: 8300000, guid: 129f42112529d79449d065355856983a, type: 3}
+      objectReference: {fileID: 8300000, guid: ffe044922188460489ed0085ebbb9cf7, type: 3}
     - target: {fileID: 821875907577016999, guid: 984729569f8972c4abc2dffa563be5eb,
         type: 3}
       propertyPath: specialslash
