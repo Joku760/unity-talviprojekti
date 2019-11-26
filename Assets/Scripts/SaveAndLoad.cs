@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class SaveAndLoad : MonoBehaviour
 {
     GameObject player;
+    GameObject sword;
     private List<String> onLoadDelete = new List<String>();
     List<GameObject> interactablesAll = new List<GameObject>();
     private List<String> litTorches = new List<String>();
@@ -18,6 +19,7 @@ public class SaveAndLoad : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        sword = GameObject.Find("PolyartSword");
     }
 
     void Update()
@@ -49,6 +51,9 @@ public class SaveAndLoad : MonoBehaviour
         data.speed = player.GetComponent<PlayerController>().speed;
         data.onLoadDelete = onLoadDelete;
         data.litTorches = litTorches;
+        data.boltDamage = GameObject.Find("RPGHeroPolyart").GetComponent<CrossBow>().damage;
+        data.swordDamage = sword.GetComponent<Sword>().damage;
+        data.swordMultiplier = sword.GetComponent<Sword>().specialMultiplier;
 
         bf.Serialize(file, data);
         file.Close();
@@ -73,6 +78,9 @@ public class SaveAndLoad : MonoBehaviour
             player.GetComponent<PlayerController>().maxHp = data.playerMaxHP;
             player.GetComponent<PlayerController>().armor = data.armor;
             player.GetComponent<PlayerController>().speed = data.speed;
+            sword.GetComponent<Sword>().damage = data.swordDamage;
+            sword.GetComponent<Sword>().specialMultiplier = data.swordMultiplier;
+            GameObject.Find("RPGHeroPolyart").GetComponent<CrossBow>().damage = data.boltDamage;
             onLoadDelete = data.onLoadDelete;
             loadedLitTorches = data.litTorches;
             foreach (String vectorString in onLoadDelete)
@@ -142,4 +150,7 @@ public class SaveData
     public int playerMaxHP = 0;
     public int armor = 0;
     public float speed = 0;
+    public int boltDamage = 0;
+    public int swordDamage = 0;
+    public int swordMultiplier = 0;
 }
