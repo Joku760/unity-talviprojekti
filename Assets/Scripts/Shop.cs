@@ -21,6 +21,10 @@ public class Shop : MonoBehaviour
     Sword sword;
     CrossBow crossBow;
     PlayerController playerController;
+    public CanvasGroup upgradePanel1;
+    public CanvasGroup upgradePanel2;
+    public CanvasGroup upgradePanel3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +113,8 @@ public class Shop : MonoBehaviour
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade1.price;
             goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
             shopGoldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
+            upgradePanel1.alpha = 0f;
+            upgradePanel1.blocksRaycasts = false;
             if(upgrade1.targetObject == "player")
             {
                 playerController.updateUpgrade(upgrade1.targetValue, upgrade1.value);
@@ -132,6 +138,8 @@ public class Shop : MonoBehaviour
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade2.price;
             goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
             shopGoldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
+            upgradePanel2.alpha = 0f;
+            upgradePanel2.blocksRaycasts = false;
             if (upgrade2.targetObject == "player")
             {
                 playerController.updateUpgrade(upgrade2.targetValue, upgrade2.value);
@@ -154,6 +162,8 @@ public class Shop : MonoBehaviour
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade3.price;
             goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
             shopGoldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
+            upgradePanel3.alpha = 0f;
+            upgradePanel3.blocksRaycasts = false;
             if (upgrade3.targetObject == "player")
             {
                 playerController.updateUpgrade(upgrade3.targetValue, upgrade3.value);
@@ -184,8 +194,14 @@ public class Shop : MonoBehaviour
 
         upgrade1 = upgradeTable.upgrades[upgradeCount1];
         upgrade2 = upgradeTable.upgrades[upgradeCount2];
-        upgrade3 = upgradeTable.upgrades[upgradeCount3]; 
+        upgrade3 = upgradeTable.upgrades[upgradeCount3];
 
+        upgradePanel1.alpha = 1f;
+        upgradePanel1.blocksRaycasts = true;
+        upgradePanel2.alpha = 1f;
+        upgradePanel2.blocksRaycasts = true;
+        upgradePanel3.alpha = 1f;
+        upgradePanel3.blocksRaycasts = true;
     }
     public void SetUpgrades()
     {

@@ -9833,6 +9833,9 @@ MonoBehaviour:
   hud: {fileID: 0}
   shopMenu: {fileID: 0}
   potionPrice: 20
+  upgradePanel1: {fileID: 0}
+  upgradePanel2: {fileID: 0}
+  upgradePanel3: {fileID: 0}
 --- !u!65 &1336406200020993579
 BoxCollider:
   m_ObjectHideFlags: 0
