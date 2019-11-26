@@ -6,19 +6,36 @@ public class LightTorch : MonoBehaviour
 {
     Transform player;
     Light torchlight;
+    GameObject saveLoad;
+    bool unlit;
 
     private void Start()
     {
         player = GameObject.Find("Player").transform;
+        saveLoad = GameObject.Find("SaveLoad");
+        saveLoad.GetComponent<SaveAndLoad>().AllTorches(this.gameObject);
         torchlight = GetComponentInChildren<Light>();
-        torchlight.gameObject.SetActive(false);
+        Unlight();
     }
     void FixedUpdate()
     {
-        if (HaveLineOfSight())
+        if (HaveLineOfSight() && unlit)
         {
-            torchlight.gameObject.SetActive(true);
+            Light();
         }
+    }
+
+    public void Unlight()
+    {
+        torchlight.gameObject.SetActive(false);
+        unlit = true;
+    }
+
+    public void Light()
+    {
+        torchlight.gameObject.SetActive(true);
+        unlit = false;
+        saveLoad.GetComponent<SaveAndLoad>().AddLitTorch(this.gameObject.transform.position);
     }
 
     bool HaveLineOfSight()

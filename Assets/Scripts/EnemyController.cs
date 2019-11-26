@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour
     bool isAlive = true;
     AudioSource audioSource;
     public AudioClip slash;
+    GameObject saveLoad;
+    Vector3 startPos;
 
     void Awake()
     {
@@ -27,6 +29,9 @@ public class EnemyController : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         playerController = player.GetComponent<PlayerController>();
         audioSource = GetComponent<AudioSource>();
+        saveLoad = GameObject.Find("SaveLoad");
+        saveLoad.GetComponent<SaveAndLoad>().ObjectToList(this.gameObject);
+        startPos = gameObject.transform.position;
     }
 
     bool InFront()
@@ -82,6 +87,7 @@ public class EnemyController : MonoBehaviour
 
         if (hp <= 0)
         {
+            saveLoad.GetComponent<SaveAndLoad>().DeleteOnLoad(startPos);
             Destroy(gameObject, 3);
             isAlive = false;
             animator.SetTrigger("Death");

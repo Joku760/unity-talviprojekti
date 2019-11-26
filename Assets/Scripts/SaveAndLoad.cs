@@ -9,9 +9,11 @@ using UnityEngine.UI;
 public class SaveAndLoad : MonoBehaviour
 {
     GameObject player;
-    [SerializeField]
-    private List<String> pickupsDelete = new List<String>();
-    List<GameObject> pickupsAll = new List<GameObject>();
+    private List<String> onLoadDelete = new List<String>();
+    List<GameObject> interactablesAll = new List<GameObject>();
+    private List<String> litTorches = new List<String>();
+    List<GameObject> allTorches = new List<GameObject>();
+    List<String> loadedLitTorches = new List<String>();
 
     void Start()
     {
@@ -42,7 +44,11 @@ public class SaveAndLoad : MonoBehaviour
         data.posY = player.transform.position.y;
         data.posZ = player.transform.position.z;
         data.playerHP = player.GetComponent<PlayerController>().hp;
-        data.pickupsDelete = pickupsDelete;
+        data.playerMaxHP = player.GetComponent<PlayerController>().maxHp;
+        data.armor = player.GetComponent<PlayerController>().armor;
+        data.speed = player.GetComponent<PlayerController>().speed;
+        data.onLoadDelete = onLoadDelete;
+        data.litTorches = litTorches;
 
         bf.Serialize(file, data);
         file.Close();
@@ -64,11 +70,14 @@ public class SaveAndLoad : MonoBehaviour
             player.transform.position = new Vector3(data.posX, data.posY, data.posZ);
             player.GetComponent<PlayerController>().hp = 100;
             player.GetComponent<PlayerController>().UpdateHp(100 - data.playerHP);
-            pickupsDelete = data.pickupsDelete;
-            Debug.Log(pickupsDelete.Count);
-            foreach (String vectorString in pickupsDelete)
+            player.GetComponent<PlayerController>().maxHp = data.playerMaxHP;
+            player.GetComponent<PlayerController>().armor = data.armor;
+            player.GetComponent<PlayerController>().speed = data.speed;
+            onLoadDelete = data.onLoadDelete;
+            loadedLitTorches = data.litTorches;
+            foreach (String vectorString in onLoadDelete)
             {
-                foreach(GameObject obj in pickupsAll)
+                foreach(GameObject obj in interactablesAll)
                 {
                     if(obj.transform.position.ToString().Equals(vectorString))
                     {
@@ -76,18 +85,39 @@ public class SaveAndLoad : MonoBehaviour
                     }
                 }
             }
+            foreach (String vectorString in loadedLitTorches)
+            {
+                foreach (GameObject obj in allTorches)
+                {
+                    if (obj.transform.position.ToString().Equals(vectorString))
+                    {
+                        obj.GetComponent<LightTorch>().Light();
+                    }
+                }
+            }
         }
     }
 
-    public void PickupToDelete(Vector3 pos)
+    public void DeleteOnLoad(Vector3 pos)
     {
         String vectorString = pos.ToString();
-        pickupsDelete.Add(vectorString);
+        onLoadDelete.Add(vectorString);
     }
 
-    public void PickupToList(GameObject obj)
+    public void ObjectToList(GameObject obj)
     {
-        pickupsAll.Add(obj);
+        interactablesAll.Add(obj);
+    }
+
+    public void AddLitTorch(Vector3 pos)
+    {
+        String vectorString = pos.ToString();
+        litTorches.Add(vectorString);
+    }
+
+    public void AllTorches(GameObject obj)
+    {
+        allTorches.Add(obj);
     }
     /*
     public Vector3 stringToVec(string s)
@@ -101,11 +131,15 @@ public class SaveAndLoad : MonoBehaviour
 [Serializable]
 public class SaveData
 {
-    public List<String> pickupsDelete = new List<String>();
+    public List<String> onLoadDelete = new List<String>();
+    public List<String> litTorches = new List<String>();
     public int healthPotions = 0;
     public int gold = 0;
     public float posX = 0;
     public float posY = 0;
     public float posZ = 0;
     public int playerHP = 0;
+    public int playerMaxHP = 0;
+    public int armor = 0;
+    public float speed = 0;
 }
