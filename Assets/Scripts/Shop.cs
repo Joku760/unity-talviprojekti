@@ -94,7 +94,7 @@ public class Shop : MonoBehaviour
 
     public void BuyPotion()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if(gold >= potionPrice)
         {
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - potionPrice;
@@ -107,7 +107,7 @@ public class Shop : MonoBehaviour
 
     public void Upgrade1()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade1.price)
         {
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade1.price;
@@ -132,7 +132,7 @@ public class Shop : MonoBehaviour
 
     public void Upgrade2()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade2.price)
         {
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade2.price;
@@ -156,7 +156,7 @@ public class Shop : MonoBehaviour
     }
     public void Upgrade3()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade3.price)
         {
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade3.price;
