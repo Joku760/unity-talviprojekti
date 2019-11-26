@@ -24,6 +24,8 @@ public class Shop : MonoBehaviour
     public CanvasGroup upgradePanel1;
     public CanvasGroup upgradePanel2;
     public CanvasGroup upgradePanel3;
+    AudioSource audioSource;
+    public AudioClip buyItem;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class Shop : MonoBehaviour
         sword = FindObjectOfType<Sword>();
         playerController = FindObjectOfType<PlayerController>();
         crossBow = FindObjectOfType<CrossBow>();
+        audioSource = GetComponent<AudioSource>();
         GetUpgrades();
         
     }
@@ -94,9 +97,11 @@ public class Shop : MonoBehaviour
 
     public void BuyPotion()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if(gold >= potionPrice)
         {
+            audioSource.clip = buyItem;
+            audioSource.Play();
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - potionPrice;
             GameObject.Find("Player").GetComponent<PlayerController>().healthPotions++;
             goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
@@ -107,9 +112,11 @@ public class Shop : MonoBehaviour
 
     public void Upgrade1()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade1.price)
         {
+            audioSource.clip = buyItem;
+            audioSource.Play();
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade1.price;
             goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
             shopGoldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
@@ -132,9 +139,11 @@ public class Shop : MonoBehaviour
 
     public void Upgrade2()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade2.price)
         {
+            audioSource.clip = buyItem;
+            audioSource.Play();
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade2.price;
             goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
             shopGoldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
@@ -156,9 +165,11 @@ public class Shop : MonoBehaviour
     }
     public void Upgrade3()
     {
-        int gold = player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold;
+        int gold = player.GetComponent<PlayerController>().gold;
         if (gold >= upgrade3.price)
         {
+            audioSource.clip = buyItem;
+            audioSource.Play();
             player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold - upgrade3.price;
             goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
             shopGoldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();

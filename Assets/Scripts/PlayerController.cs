@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip drink;
     public AudioClip hit;
     public AudioClip crossbow;
+    public bool isWalking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -109,10 +110,12 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
         {
             animator.SetTrigger("Run");
+            isWalking = true;
         }
         else
         {
             animator.SetTrigger("Stop_Moving");
+            isWalking = false;
         }
 
 
