@@ -5891,6 +5891,7 @@ GameObject:
   - component: {fileID: 600297902}
   - component: {fileID: 600297901}
   - component: {fileID: 600297903}
+  - component: {fileID: 600297904}
   m_Layer: 5
   m_Name: UpgradePanel1
   m_TagString: Untagged
@@ -6011,6 +6012,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &600297904
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600297899}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &601166021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6310,6 +6323,7 @@ GameObject:
   - component: {fileID: 619238918}
   - component: {fileID: 619238917}
   - component: {fileID: 619238919}
+  - component: {fileID: 619238920}
   m_Layer: 5
   m_Name: UpgradePanel3
   m_TagString: Untagged
@@ -6430,6 +6444,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &619238920
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619238915}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &621206160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12002,6 +12028,7 @@ GameObject:
   - component: {fileID: 1267643630}
   - component: {fileID: 1267643629}
   - component: {fileID: 1267643631}
+  - component: {fileID: 1267643632}
   m_Layer: 5
   m_Name: UpgradePanel2
   m_TagString: Untagged
@@ -12122,6 +12149,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &1267643632
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267643627}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1279612614 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1784612528550548, guid: 2d0f20d11945dcf40bc89cbe6339221c,
@@ -21692,6 +21731,18 @@ PrefabInstance:
       propertyPath: shopMenu
       value: 
       objectReference: {fileID: 321218730}
+    - target: {fileID: 571232943, guid: 09c4e52e1d2e49f4091ee1f5f24f4265, type: 3}
+      propertyPath: upgradePanel1
+      value: 
+      objectReference: {fileID: 600297904}
+    - target: {fileID: 571232943, guid: 09c4e52e1d2e49f4091ee1f5f24f4265, type: 3}
+      propertyPath: upgradePanel2
+      value: 
+      objectReference: {fileID: 1267643632}
+    - target: {fileID: 571232943, guid: 09c4e52e1d2e49f4091ee1f5f24f4265, type: 3}
+      propertyPath: upgradePanel3
+      value: 
+      objectReference: {fileID: 619238920}
     - target: {fileID: 1336406200775116080, guid: 09c4e52e1d2e49f4091ee1f5f24f4265,
         type: 3}
       propertyPath: m_LocalPosition.x
