@@ -18,7 +18,7 @@ public class HealthPotionPickup : MonoBehaviour
         player = GameObject.Find("Player");
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
         saveLoad = GameObject.Find("SaveLoad");
-        saveLoad.GetComponent<SaveAndLoad>().PickupToList(this.gameObject);
+        saveLoad.GetComponent<SaveAndLoad>().ObjectToList(this.gameObject);
         audioSource = GetComponent<AudioSource>();
         render = GetComponent<MeshRenderer>();
     }
@@ -29,7 +29,7 @@ public class HealthPotionPickup : MonoBehaviour
             GivePotion();
             audioSource.clip = potion;
             audioSource.Play();
-            saveLoad.GetComponent<SaveAndLoad>().PickupToDelete(this.gameObject.transform.position);
+            saveLoad.GetComponent<SaveAndLoad>().DeleteOnLoad(this.gameObject.transform.position);
             render.enabled = false;
             Destroy(this.gameObject, audioSource.clip.length);
             //gameObject.SetActive(false);

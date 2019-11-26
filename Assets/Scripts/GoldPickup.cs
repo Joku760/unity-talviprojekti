@@ -20,7 +20,7 @@ public class GoldPickup : MonoBehaviour
         addGold = Random.Range(14, 26);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
         saveLoad = GameObject.Find("SaveLoad");
-        saveLoad.GetComponent<SaveAndLoad>().PickupToList(this.gameObject);
+        saveLoad.GetComponent<SaveAndLoad>().ObjectToList(this.gameObject);
         audioSource = GetComponent<AudioSource>();
         render = GetComponent<MeshRenderer>();
     }
@@ -31,7 +31,7 @@ public class GoldPickup : MonoBehaviour
             GiveGold();
             audioSource.clip = money;
             audioSource.Play();
-            saveLoad.GetComponent<SaveAndLoad>().PickupToDelete(this.gameObject.transform.position);
+            saveLoad.GetComponent<SaveAndLoad>().DeleteOnLoad(this.gameObject.transform.position);
             render.enabled = false;
             Destroy(this.gameObject, audioSource.clip.length);
             //gameObject.SetActive(false);
