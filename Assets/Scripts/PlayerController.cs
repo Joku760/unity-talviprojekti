@@ -185,7 +185,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (damage > 0)
         {
-            animator.SetTrigger("Get_Hit");
+            if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")))
+            { 
+                // Avoid any reload.
+                animator.SetTrigger("Get_Hit");
+            }         
             audioSource.clip = hit;
             audioSource.Play();
         }
@@ -204,36 +208,42 @@ public class PlayerController : MonoBehaviour
         {
             temps = Time.time;
         }
-
-        if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.4)
+        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")))
         {
-            // short Click
-            animator.SetTrigger("Base_Attack");
-            sword.PerformAttack();
-            if (!audioSource.isPlaying)
+            if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.4)
             {
-                audioSource.clip = swordslash;
-                audioSource.Play();
+                // short Click
+                animator.SetTrigger("Base_Attack");
+                sword.PerformAttack();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = swordslash;
+                    audioSource.Play();
+                }
             }
         }
 
-        if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.4)
+        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")))
         {
-            // Long Click
-            animator.SetTrigger("Special_Attack");
-            sword.SpecialAttack();
-            if (!audioSource.isPlaying)
+
+            if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.4)
             {
-                audioSource.clip = specialslash;
+                // Long Click
+                animator.SetTrigger("Special_Attack");
+                sword.SpecialAttack();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = specialslash;
+                    audioSource.Play();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                crossBow.PerformAttack();
+                audioSource.clip = crossbow;
                 audioSource.Play();
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            crossBow.PerformAttack();
-            audioSource.clip = crossbow;
-            audioSource.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.X) && hp < 100)
