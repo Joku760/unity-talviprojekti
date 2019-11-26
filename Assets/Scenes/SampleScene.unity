@@ -13028,6 +13028,11 @@ PrefabInstance:
       propertyPath: enemyhit
       value: 
       objectReference: {fileID: 8300000, guid: c8a0985edc64e6740a7374d4241927b1, type: 3}
+    - target: {fileID: 821875907577016999, guid: 984729569f8972c4abc2dffa563be5eb,
+        type: 3}
+      propertyPath: shopMenu
+      value: 
+      objectReference: {fileID: 321218730}
     - target: {fileID: 4812191743921961, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.104323216

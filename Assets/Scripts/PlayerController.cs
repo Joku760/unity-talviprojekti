@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public bool isDead = false;
     public GameObject gameOverScreen;
+    public GameObject shopMenu;
     public int gold = 0;
     public int healthPotions = 0;
     Text potionText;
@@ -208,7 +209,7 @@ public class PlayerController : MonoBehaviour
         {
             temps = Time.time;
         }
-        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")))
+        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")) && !shopMenu.activeSelf)
         {
             if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.4)
             {
@@ -223,7 +224,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")))
+        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")) && !shopMenu.activeSelf)
         {
 
             if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.4)
