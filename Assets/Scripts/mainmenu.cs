@@ -20,7 +20,7 @@ public class mainmenu : MonoBehaviour
 
         List<string> options = new List<string>();
 
-        int currenResolutionIndex = 0;
+        //int currenResolutionIndex = 0;
         for(int i=0; i<resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
@@ -29,12 +29,12 @@ public class mainmenu : MonoBehaviour
             if (resolutions[i].width == Screen.currentResolution.width &&
                 resolutions[i].height == Screen.currentResolution.height)
             {
-                currenResolutionIndex = i;
+                //currenResolutionIndex = i;
             }
         }
 
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currenResolutionIndex;
+        //resolutionDropdown.value = currenResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
 
