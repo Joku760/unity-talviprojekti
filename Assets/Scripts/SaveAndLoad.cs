@@ -10,6 +10,7 @@ public class SaveAndLoad : MonoBehaviour
 {
     GameObject player;
     GameObject sword;
+    int loadBool;
     private List<String> onLoadDelete = new List<String>();
     List<GameObject> interactablesAll = new List<GameObject>();
     private List<String> litTorches = new List<String>();
@@ -20,13 +21,25 @@ public class SaveAndLoad : MonoBehaviour
     {
         player = GameObject.Find("Player");
         sword = GameObject.Find("PolyartSword");
+        loadBool = PlayerPrefs.GetInt("SaveLoadBoolean");
+        if (loadBool == 1)
+        {
+            PlayerPrefs.SetInt("SaveLoadBoolean", 0);
+            Load();
+        }
     }
 
     void Update()
     {
+        if (loadBool == 1)
+        {
+            loadBool = 0;
+            Load();
+        }
         if (Input.GetKeyDown(KeyCode.O))
         {
             Save();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Mainmenu");
         }
         if (Input.GetKeyDown(KeyCode.P))
         {

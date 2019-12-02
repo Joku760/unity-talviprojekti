@@ -41,6 +41,13 @@ public class mainmenu : MonoBehaviour
     public void StartScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        PlayerPrefs.SetInt("SaveLoadBoolean", 0);
+    }
+
+    public void StartSceneContinue()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        PlayerPrefs.SetInt("SaveLoadBoolean", 1);
     }
 
     public void SettingsMenu()
