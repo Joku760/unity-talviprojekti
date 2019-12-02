@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (damage > 0)
         {
-            if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")))
+            if (!(this.animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(1).IsName("ShootAttack_CrossBow")))
             { 
                 // Avoid any reload.
                 animator.SetTrigger("Get_Hit");
@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
         {
             temps = Time.time;
         }
-        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")) && !shopMenu.activeSelf)
+        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(1).IsName("ShootAttack_CrossBow")) && !shopMenu.activeSelf)
         {
             if (Input.GetMouseButtonUp(0) && (Time.time - temps) < 0.4)
             {
@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!(this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("ShootAttack_CrossBow")) && !shopMenu.activeSelf)
+        if (!(this.animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack01_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield") || this.animator.GetCurrentAnimatorStateInfo(1).IsName("ShootAttack_CrossBow")) && !shopMenu.activeSelf)
         {
 
             if (Input.GetMouseButtonUp(0) && (Time.time - temps) > 0.4)
