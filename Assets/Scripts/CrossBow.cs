@@ -12,9 +12,12 @@ public class CrossBow : MonoBehaviour
     int timeBetweenAttacks = 250;
     public Animator animator;
     public int damage = 20;
+    AudioSource audioSource;
+    public AudioClip crossbow;
+    public AudioClip swordSlash;
     void Start()
     {
-
+        audioSource = GetComponentInParent<AudioSource>();
     }
 
     void Update()
@@ -27,13 +30,14 @@ public class CrossBow : MonoBehaviour
         if (timer >= timeBetweenAttacks)
         {
             timer = 0;
-            animator.SetTrigger("Shoot_Attack");
-            
+            animator.SetTrigger("Shoot_Attack");          
         }   
     }
 
     public void Shoot()
     {
+        audioSource.clip = crossbow;
+        audioSource.Play();
         Quaternion rotation = projectileSpawn.rotation;
         rotation *= Quaternion.Euler(0, 90, 0);
         GameObject arrowInstance = (GameObject)Instantiate(arrow, projectileSpawn.position, rotation);
@@ -46,6 +50,14 @@ public class CrossBow : MonoBehaviour
         {
             damage = damage + value;
         }
+    }
+
+    public void playAttackSound()
+    {
+        
+            audioSource.clip = swordSlash;
+            audioSource.Play();
+        
     }
 
 }
