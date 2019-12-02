@@ -43,7 +43,7 @@ public class SaveAndLoad : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Load();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Mainmenu");
         }
     }
 
