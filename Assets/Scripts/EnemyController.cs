@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public AudioClip slash;
     GameObject saveLoad;
     Vector3 startPos;
+    public GameObject drop;
 
     void Awake()
     {
@@ -32,6 +33,11 @@ public class EnemyController : MonoBehaviour
         saveLoad = GameObject.Find("SaveLoad");
         saveLoad.GetComponent<SaveAndLoad>().ObjectToList(this.gameObject);
         startPos = gameObject.transform.position;
+    }
+
+    private void OnDestroy() 
+    {
+        Instantiate(drop, new Vector3(enemy.position.x, 0.01f , enemy.position.z), drop.transform.rotation); 
     }
 
     bool InFront()
