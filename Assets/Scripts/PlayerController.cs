@@ -48,23 +48,24 @@ public class PlayerController : MonoBehaviour
         dashTime = 5;
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
-        //animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isDead == false)
+        if(isDead == false && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield"))
         {
             RotatePlayer();
-            RotateCamera();
+           
             CheckAttackInput();
         }
+        RotateCamera();
     }
 
     void FixedUpdate()
     {
-        if(isDead == false)
+        cameraRotator.transform.position = transform.position;
+        if (isDead == false && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield"))
         {
             MovePlayer();
         }
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
 
-        cameraRotator.transform.position = transform.position;
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         movement = new Vector3(horizontal, 0, vertical);
