@@ -53,13 +53,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDead == false && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield"))
+        if(isDead == false)
         {
             RotatePlayer();
-           
-            CheckAttackInput();
-        }
-        RotateCamera();
+            RotateCamera();
+            CheckAttackInput();       
+        }      
     }
 
     void FixedUpdate()
@@ -68,6 +67,10 @@ public class PlayerController : MonoBehaviour
         if (isDead == false && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack02_SwordShield"))
         {
             MovePlayer();
+        }
+        else
+        {
+            isWalking = false;
         }
     }
 
@@ -231,11 +234,9 @@ public class PlayerController : MonoBehaviour
                 // Long Click
                 animator.SetTrigger("Special_Attack");
                 sword.SpecialAttack();
-                if (!audioSource.isPlaying)
-                {
                     audioSource.clip = specialslash;
                     audioSource.Play();
-                }
+                
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))

@@ -30,14 +30,14 @@ public class CrossBow : MonoBehaviour
         if (timer >= timeBetweenAttacks)
         {
             timer = 0;
-            animator.SetTrigger("Shoot_Attack");
-            audioSource.clip = crossbow;
-            audioSource.Play();
+            animator.SetTrigger("Shoot_Attack");          
         }   
     }
 
     public void Shoot()
     {
+        audioSource.clip = crossbow;
+        audioSource.Play();
         Quaternion rotation = projectileSpawn.rotation;
         rotation *= Quaternion.Euler(0, 90, 0);
         GameObject arrowInstance = (GameObject)Instantiate(arrow, projectileSpawn.position, rotation);
@@ -54,11 +54,10 @@ public class CrossBow : MonoBehaviour
 
     public void playAttackSound()
     {
-        if (!audioSource.isPlaying)
-        {
+        
             audioSource.clip = swordSlash;
             audioSource.Play();
-        }
+        
     }
 
 }
