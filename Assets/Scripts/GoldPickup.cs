@@ -13,6 +13,7 @@ public class GoldPickup : MonoBehaviour
     AudioSource audioSource;
     public AudioClip money;
     MeshRenderer render;
+    bool canPickUp = true;
 
     void Start()
     {
@@ -26,9 +27,10 @@ public class GoldPickup : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight())
+        if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight() && canPickUp)
         {
             GiveGold();
+            canPickUp = false;
             audioSource.clip = money;
             audioSource.Play();
             saveLoad.GetComponent<SaveAndLoad>().DeleteOnLoad(this.gameObject.transform.position);

@@ -12,6 +12,7 @@ public class HealthPotionPickup : MonoBehaviour
     AudioSource audioSource;
     public AudioClip potion;
     MeshRenderer render;
+    bool canPickUp = true;
 
     void Start()
     {
@@ -24,9 +25,10 @@ public class HealthPotionPickup : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight())
+        if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight() && canPickUp)
         {
             GivePotion();
+            canPickUp = false;
             audioSource.clip = potion;
             audioSource.Play();
             saveLoad.GetComponent<SaveAndLoad>().DeleteOnLoad(this.gameObject.transform.position);
