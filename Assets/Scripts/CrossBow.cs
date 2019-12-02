@@ -12,9 +12,12 @@ public class CrossBow : MonoBehaviour
     int timeBetweenAttacks = 250;
     public Animator animator;
     public int damage = 20;
+    AudioSource audioSource;
+    public AudioClip crossbow;
+    public AudioClip swordSlash;
     void Start()
     {
-
+        audioSource = GetComponentInParent<AudioSource>();
     }
 
     void Update()
@@ -28,7 +31,8 @@ public class CrossBow : MonoBehaviour
         {
             timer = 0;
             animator.SetTrigger("Shoot_Attack");
-            
+            audioSource.clip = crossbow;
+            audioSource.Play();
         }   
     }
 
@@ -45,6 +49,15 @@ public class CrossBow : MonoBehaviour
         if (valueTarget == "damage")
         {
             damage = damage + value;
+        }
+    }
+
+    public void playAttackSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = swordSlash;
+            audioSource.Play();
         }
     }
 

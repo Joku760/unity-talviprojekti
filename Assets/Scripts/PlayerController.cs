@@ -220,11 +220,6 @@ public class PlayerController : MonoBehaviour
                 // short Click
                 animator.SetTrigger("Base_Attack");
                 sword.PerformAttack();
-                if (!audioSource.isPlaying)
-                {
-                    audioSource.clip = swordslash;
-                    audioSource.Play();
-                }
             }
         }
 
@@ -246,8 +241,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 crossBow.PerformAttack();
-                audioSource.clip = crossbow;
-                audioSource.Play();
             }
         }
 
