@@ -14,12 +14,13 @@ public class OpenChest : MonoBehaviour
     Text goldText;
     GameObject saveLoad;
     Text potionText;
+    int rollTheDie;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         player = GameObject.Find("Player");
-        addGold = Random.Range(30, 45);
+        rollTheDie = Random.Range(1, 100);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
         saveLoad = GameObject.Find("SaveLoad");
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
@@ -34,8 +35,15 @@ public class OpenChest : MonoBehaviour
             audioSource.clip = chest;
             audioSource.Play();
             canOpen = false;
-            GiveGold();
-            GivePotion();
+            if(rollTheDie < 76)
+            {
+                addGold = Random.Range(14, 26);
+                GiveGold();
+            }
+            else
+            {
+                GivePotion();
+            }
         }
     }
     private void OnMouseEnter()
