@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     GameObject saveLoad;
     Vector3 startPos;
     public GameObject drop;
+    bool canDropGold = true;
 
     void Awake()
     {
@@ -37,7 +38,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy() 
     {
-        Instantiate(drop, new Vector3(enemy.position.x, 0.01f , enemy.position.z), drop.transform.rotation); 
+        //Instantiate(drop, new Vector3(enemy.position.x, 0.01f , enemy.position.z), drop.transform.rotation); 
     }
 
     bool InFront()
@@ -97,6 +98,11 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject, 3);
             isAlive = false;
             animator.SetTrigger("Death");
+            if (canDropGold)
+            {
+                Instantiate(drop, new Vector3(enemy.position.x, 0.01f, enemy.position.z), drop.transform.rotation);
+                canDropGold = false;
+            }
         }
     }
 }

@@ -3,39 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OpenChest : MonoBehaviour
+public class GoldDropPickup : MonoBehaviour
 {
-    GameObject player;
     bool hover = false;
-    bool canOpen = true;
-    AudioSource audioSource;
-    public AudioClip chest;
+    GameObject player;
     int addGold;
     Text goldText;
-    GameObject saveLoad;
-    Text potionText;
+    AudioSource audioSource;
+    public AudioClip money;
+    MeshRenderer render;
+    bool canPickUp = true;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         player = GameObject.Find("Player");
-        addGold = Random.Range(30, 45);
+        addGold = Random.Range(14, 26);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
-        saveLoad = GameObject.Find("SaveLoad");
-        potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
+        audioSource = GetComponent<AudioSource>();
+        render = GetComponent<MeshRenderer>();
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.F) && hover && canOpen)
+        if (Input.GetKeyDown(KeyCode.F) && hover && HaveLineOfSight() && canPickUp)
         {
-            var hinge = GetComponent<HingeJoint>();
-            //var motor = hinge.motor;
-            hinge.useMotor = true;
-            audioSource.clip = chest;
-            audioSource.Play();
-            canOpen = false;
             GiveGold();
-            GivePotion();
+            canPickUp = false;
+            audioSource.clip = money;
+            audioSource.Play();
+            render.enabled = false;
+            Destroy(this.gameObject, audioSource.clip.length);
+            //gameObject.SetActive(false);
         }
     }
     private void OnMouseEnter()
@@ -46,7 +43,6 @@ public class OpenChest : MonoBehaviour
     {
         hover = false;
     }
-
     bool HaveLineOfSight()
     {
         RaycastHit hit;
@@ -65,10 +61,5 @@ public class OpenChest : MonoBehaviour
     {
         player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold + addGold;
         goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
-    }
-    void GivePotion()
-    {
-        player.GetComponent<PlayerController>().healthPotions++;
-        potionText.text = "HP Pots: " + player.GetComponent<PlayerController>().healthPotions.ToString();
     }
 }
