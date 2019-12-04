@@ -10,6 +10,9 @@ TagManager:
   - enemyBug
   - Castle
   - Arrow
+  - SpawnPoint
+  - Rooms
+  - StartFloor
   layers:
   - Default
   - TransparentFX
