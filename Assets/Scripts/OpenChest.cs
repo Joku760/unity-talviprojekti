@@ -27,7 +27,7 @@ public class OpenChest : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.F) && hover && canOpen)
+        if (Input.GetKey(KeyCode.F) && hover && canOpen && InFront())
         {
             var hinge = GetComponent<HingeJoint>();
             //var motor = hinge.motor;
@@ -55,20 +55,19 @@ public class OpenChest : MonoBehaviour
         hover = false;
     }
 
-    bool HaveLineOfSight()
+    bool InFront()
     {
-        RaycastHit hit;
-        Vector3 direction = player.transform.position - transform.position;
 
-        if (Physics.Raycast(transform.position, direction, out hit, 1))
+        Vector3 directionToTarget = transform.position - player.transform.position;
+        float distance = directionToTarget.magnitude;
+
+        if (distance < 1)
         {
-            if (hit.transform.CompareTag("Player"))
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
+
     void GiveGold()
     {
         player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold + addGold;
