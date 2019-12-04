@@ -11,6 +11,7 @@ public class ShowMessage : MonoBehaviour
     bool open = false;
     AudioSource audioSource;
     public AudioClip paper;
+    
 
     private void Start()
     {
@@ -44,6 +45,8 @@ public class ShowMessage : MonoBehaviour
             objekti.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             HUD.gameObject.SetActive(true);
+            var hinge = GameObject.Find("StartDoorway").gameObject.GetComponent<HingeJoint>();
+            hinge.useMotor = true;
         }
     }
     bool HaveLineOfSight()
