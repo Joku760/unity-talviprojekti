@@ -16,6 +16,12 @@ public class SaveAndLoad : MonoBehaviour
     private List<String> litTorches = new List<String>();
     List<GameObject> allTorches = new List<GameObject>();
     List<String> loadedLitTorches = new List<String>();
+    List<int> openDirectionList = new List<int>();
+    List<int> roomRandList = new List<int>();
+    List<String> roomSpawnPosList = new List<String>();
+    List<int> loadedOpenDirectionList = new List<int>();
+    List<int> loadedRoomRandList = new List<int>();
+    List<String> loadedRoomSpawnPosList = new List<String>();
 
     void Start()
     {
@@ -67,6 +73,9 @@ public class SaveAndLoad : MonoBehaviour
         data.boltDamage = GameObject.Find("RPGHeroPolyart").GetComponent<CrossBow>().damage;
         data.swordDamage = sword.GetComponent<Sword>().damage;
         data.swordMultiplier = sword.GetComponent<Sword>().specialMultiplier;
+        data.openDirectionList = openDirectionList;
+        data.roomRandList = roomRandList;
+        data.roomSpawnPosList = roomSpawnPosList;
 
         bf.Serialize(file, data);
         file.Close();
@@ -96,6 +105,9 @@ public class SaveAndLoad : MonoBehaviour
             GameObject.Find("RPGHeroPolyart").GetComponent<CrossBow>().damage = data.boltDamage;
             onLoadDelete = data.onLoadDelete;
             loadedLitTorches = data.litTorches;
+            loadedOpenDirectionList = data.openDirectionList;
+            loadedRoomRandList = data.roomRandList;
+            loadedRoomSpawnPosList = data.roomSpawnPosList;
             foreach (String vectorString in onLoadDelete)
             {
                 foreach(GameObject obj in interactablesAll)
@@ -140,13 +152,21 @@ public class SaveAndLoad : MonoBehaviour
     {
         allTorches.Add(obj);
     }
-    /*
+
+    public void RoomSaver(int direction, int randNum, float posX, float posY, float posZ)
+    {
+        openDirectionList.Add(direction);
+        roomRandList.Add(randNum);
+        String vectorString = posX + "," + posY + "," + posZ;
+        roomSpawnPosList.Add(vectorString);
+    }
+    
     public Vector3 stringToVec(string s)
     {
         string[] temp = s.Substring(1, s.Length - 2).Split(',');
         return new Vector3(float.Parse(temp[0]), float.Parse(temp[1]), float.Parse(temp[2]));
     }
-    */
+    
 }
 
 [Serializable]
@@ -154,6 +174,9 @@ public class SaveData
 {
     public List<String> onLoadDelete = new List<String>();
     public List<String> litTorches = new List<String>();
+    public List<int> openDirectionList = new List<int>();
+    public List<int> roomRandList = new List<int>();
+    public List<String> roomSpawnPosList = new List<String>();
     public int healthPotions = 0;
     public int gold = 0;
     public float posX = 0;

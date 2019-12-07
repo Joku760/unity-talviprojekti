@@ -12,11 +12,13 @@ public class RoomSpawner : MonoBehaviour
 
     public float waitTime = 6f;
     private float spawnTime;
+    GameObject saveLoad;
     void Start()
     {
         Destroy(gameObject, waitTime);
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         spawnTime = Random.Range(0.1f, 0.4f);
+        saveLoad = GameObject.Find("SaveLoad");
         Invoke("Spawn", spawnTime);
     }
  
@@ -49,6 +51,8 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
             spawned = true;
+            saveLoad.GetComponent<SaveAndLoad>().RoomSaver(openingDirection, rand, transform.position.x, transform.position.y, transform.position.z);
+
         }      
     }
 
