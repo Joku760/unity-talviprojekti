@@ -11,6 +11,7 @@ public class SaveAndLoad : MonoBehaviour
     GameObject player;
     GameObject sword;
     int loadBool;
+    int loadBool2;
     private List<String> onLoadDelete = new List<String>();
     List<GameObject> interactablesAll = new List<GameObject>();
     private List<String> litTorches = new List<String>();
@@ -33,12 +34,17 @@ public class SaveAndLoad : MonoBehaviour
         player = GameObject.Find("Player");
         sword = GameObject.Find("PolyartSword");
         loadBool = PlayerPrefs.GetInt("SaveLoadBoolean");
+        loadBool2 = PlayerPrefs.GetInt("SaveLoadBoolean");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         if (loadBool == 1)
         {
-            PlayerPrefs.SetInt("SaveLoadBoolean", 0);
             Load();
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("SaveLoadBoolean", 0);
     }
 
     void Update()
@@ -79,9 +85,19 @@ public class SaveAndLoad : MonoBehaviour
         data.boltDamage = GameObject.Find("RPGHeroPolyart").GetComponent<CrossBow>().damage;
         data.swordDamage = sword.GetComponent<Sword>().damage;
         data.swordMultiplier = sword.GetComponent<Sword>().specialMultiplier;
-        data.openDirectionList = openDirectionList;
-        data.roomRandList = roomRandList;
-        data.roomSpawnPosList = roomSpawnPosList;
+        if(loadBool2 == 0)
+        {
+            Debug.Log("SAVED LEVEL");
+            data.openDirectionList = openDirectionList;
+            data.roomRandList = roomRandList;
+            data.roomSpawnPosList = roomSpawnPosList;
+        }
+        else
+        {
+            data.openDirectionList = loadedOpenDirectionList;
+            data.roomRandList = loadedRoomRandList;
+            data.roomSpawnPosList = loadedRoomSpawnPosList;
+        }
         data.openChests = openChests;
 
         bf.Serialize(file, data);
