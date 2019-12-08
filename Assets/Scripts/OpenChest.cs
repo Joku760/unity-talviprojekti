@@ -24,6 +24,7 @@ public class OpenChest : MonoBehaviour
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
         saveLoad = GameObject.Find("SaveLoad");
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
+        saveLoad.GetComponent<SaveAndLoad>().AllChests(this.gameObject);
     }
     void Update()
     {
@@ -44,6 +45,7 @@ public class OpenChest : MonoBehaviour
             {
                 GivePotion();
             }
+            saveLoad.GetComponent<SaveAndLoad>().AddOpenedChest(this.gameObject.transform.position);
         }
     }
     private void OnMouseEnter()
@@ -77,5 +79,12 @@ public class OpenChest : MonoBehaviour
     {
         player.GetComponent<PlayerController>().healthPotions++;
         potionText.text = "HP Pots: " + player.GetComponent<PlayerController>().healthPotions.ToString();
+    }
+
+    public void AlreadyOpen()
+    {
+        var hinge = GetComponent<HingeJoint>();
+        hinge.useMotor = true;
+        canOpen = false;
     }
 }

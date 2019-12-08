@@ -25,6 +25,8 @@ public class SaveAndLoad : MonoBehaviour
     private RoomTemplates templates;
     bool roomLoaded = false;
     public Boolean spawnRooms = true;
+    List<GameObject> chestsAll = new List<GameObject>();
+    List<String> openChests = new List<String>();
 
     void Start()
     {
@@ -80,6 +82,7 @@ public class SaveAndLoad : MonoBehaviour
         data.openDirectionList = openDirectionList;
         data.roomRandList = roomRandList;
         data.roomSpawnPosList = roomSpawnPosList;
+        data.openChests = openChests;
 
         bf.Serialize(file, data);
         file.Close();
@@ -113,11 +116,12 @@ public class SaveAndLoad : MonoBehaviour
             loadedRoomRandList = data.roomRandList;
             loadedRoomSpawnPosList = data.roomSpawnPosList;
             if(roomLoaded == false)
-            { 
+            {
                 roomLoaded = true;
                 spawnRooms = false;
                 RoomLoader();
             }
+            openChests = data.openChests;
             foreach (String vectorString in onLoadDelete)
             {
                 foreach(GameObject obj in interactablesAll)
@@ -135,6 +139,16 @@ public class SaveAndLoad : MonoBehaviour
                     if (obj.transform.position.ToString().Equals(vectorString))
                     {
                         obj.GetComponent<LightTorch>().Light();
+                    }
+                }
+            }
+            foreach (String vectorString in openChests)
+            {
+                foreach (GameObject obj in chestsAll)
+                {
+                    if (obj.transform.position.ToString().Equals(vectorString))
+                    {
+                        obj.GetComponent<OpenChest>().AlreadyOpen();
                     }
                 }
             }
@@ -207,7 +221,7 @@ public class SaveAndLoad : MonoBehaviour
             }
         }
     }
-    
+
     public Vector3 stringToVec(string s)
     {
         if (s.StartsWith("(") && s.EndsWith(")"))
@@ -226,7 +240,18 @@ public class SaveAndLoad : MonoBehaviour
 
         return result;
     }
-    
+
+    public void AllChests(GameObject obj)
+    {
+        chestsAll.Add(obj);
+    }
+
+    public void AddOpenedChest(Vector3 pos)
+    {
+        String vectorString = pos.ToString();
+        openChests.Add(vectorString);
+    }
+
 }
 
 [Serializable]
@@ -237,6 +262,7 @@ public class SaveData
     public List<int> openDirectionList = new List<int>();
     public List<int> roomRandList = new List<int>();
     public List<String> roomSpawnPosList = new List<String>();
+    public List<String> openChests = new List<String>();
     public int healthPotions = 0;
     public int gold = 0;
     public float posX = 0;
