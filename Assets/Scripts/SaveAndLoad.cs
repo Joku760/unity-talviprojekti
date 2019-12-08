@@ -22,12 +22,16 @@ public class SaveAndLoad : MonoBehaviour
     List<int> loadedOpenDirectionList = new List<int>();
     List<int> loadedRoomRandList = new List<int>();
     List<String> loadedRoomSpawnPosList = new List<String>();
+    private RoomTemplates templates;
+    bool roomLoaded = false;
+    public Boolean spawnRooms = true;
 
     void Start()
     {
         player = GameObject.Find("Player");
         sword = GameObject.Find("PolyartSword");
         loadBool = PlayerPrefs.GetInt("SaveLoadBoolean");
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         if (loadBool == 1)
         {
             PlayerPrefs.SetInt("SaveLoadBoolean", 0);
@@ -108,6 +112,12 @@ public class SaveAndLoad : MonoBehaviour
             loadedOpenDirectionList = data.openDirectionList;
             loadedRoomRandList = data.roomRandList;
             loadedRoomSpawnPosList = data.roomSpawnPosList;
+            if(roomLoaded == false)
+            { 
+                roomLoaded = true;
+                spawnRooms = false;
+                RoomLoader();
+            }
             foreach (String vectorString in onLoadDelete)
             {
                 foreach(GameObject obj in interactablesAll)
@@ -158,13 +168,63 @@ public class SaveAndLoad : MonoBehaviour
         openDirectionList.Add(direction);
         roomRandList.Add(randNum);
         String vectorString = posX + "," + posY + "," + posZ;
+        Debug.Log(vectorString + " " + posX);
         roomSpawnPosList.Add(vectorString);
+    }
+
+    public void RoomLoader()
+    {
+        int openDirection;
+        Vector3 roomSpawnPos;
+        int roomRand;
+        string vectorString;
+        for(int i = 0; i < loadedOpenDirectionList.Count; i++)
+        {
+            openDirection = loadedOpenDirectionList[i];
+            roomRand = loadedRoomRandList[i];
+            vectorString = loadedRoomSpawnPosList[i];
+            roomSpawnPos = stringToVec(vectorString);
+
+            if (openDirection == 1)
+            {
+                //spawn room with BOTTOM door
+                Instantiate(templates.bottomRooms[roomRand], roomSpawnPos, templates.bottomRooms[roomRand].transform.rotation);
+            }
+            else if (openDirection == 2)
+            {
+                //spawn room with TOP door
+                Instantiate(templates.topRooms[roomRand], roomSpawnPos, templates.topRooms[roomRand].transform.rotation);
+            }
+            else if (openDirection == 3)
+            {
+                //spawn room with LEFT door
+                Instantiate(templates.leftRooms[roomRand], roomSpawnPos, templates.leftRooms[roomRand].transform.rotation);
+            }
+            else if (openDirection == 4)
+            {
+                //spawn room with RIGHT door
+                Instantiate(templates.rightRooms[roomRand], roomSpawnPos, templates.rightRooms[roomRand].transform.rotation);
+            }
+        }
     }
     
     public Vector3 stringToVec(string s)
     {
-        string[] temp = s.Substring(1, s.Length - 2).Split(',');
-        return new Vector3(float.Parse(temp[0]), float.Parse(temp[1]), float.Parse(temp[2]));
+        if (s.StartsWith("(") && s.EndsWith(")"))
+        {
+            s = s.Substring(1, s.Length - 2);
+        }
+
+        // split the items
+        string[] sArray = s.Split(',');
+
+        // store as a Vector3
+        Vector3 result = new Vector3(
+            float.Parse(sArray[0]),
+            float.Parse(sArray[1]),
+            float.Parse(sArray[2]));
+
+        return result;
     }
     
 }
