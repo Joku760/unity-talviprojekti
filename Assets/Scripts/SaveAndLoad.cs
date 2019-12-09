@@ -39,6 +39,7 @@ public class SaveAndLoad : MonoBehaviour
         if (loadBool == 1)
         {
             Load();
+            StartCoroutine(LoadCoroutine());
         }
     }
 
@@ -47,12 +48,19 @@ public class SaveAndLoad : MonoBehaviour
         PlayerPrefs.SetInt("SaveLoadBoolean", 0);
     }
 
+    IEnumerator LoadCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        Load2();
+        yield return null;
+    }
+
     void Update()
     {
         if (loadBool == 1)
         {
             loadBool = 0;
-            Load();
+            //Load();
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
@@ -138,6 +146,7 @@ public class SaveAndLoad : MonoBehaviour
                 RoomLoader();
             }
             openChests = data.openChests;
+            /*
             foreach (String vectorString in onLoadDelete)
             {
                 foreach(GameObject obj in interactablesAll)
@@ -166,6 +175,40 @@ public class SaveAndLoad : MonoBehaviour
                     {
                         obj.GetComponent<OpenChest>().AlreadyOpen();
                     }
+                }
+            } */
+        }
+    }
+
+    public void Load2()
+    {
+        foreach (String vectorString in onLoadDelete)
+        {
+            foreach (GameObject obj in interactablesAll)
+            {
+                if (obj.transform.position.ToString().Equals(vectorString))
+                {
+                    obj.gameObject.SetActive(false);
+                }
+            }
+        }
+        foreach (String vectorString in loadedLitTorches)
+        {
+            foreach (GameObject obj in allTorches)
+            {
+                if (obj.transform.position.ToString().Equals(vectorString))
+                {
+                    obj.GetComponent<LightTorch>().Light();
+                }
+            }
+        }
+        foreach (String vectorString in openChests)
+        {
+            foreach (GameObject obj in chestsAll)
+            {
+                if (obj.transform.position.ToString().Equals(vectorString))
+                {
+                    obj.GetComponent<OpenChest>().AlreadyOpen();
                 }
             }
         }
