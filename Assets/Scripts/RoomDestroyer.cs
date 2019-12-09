@@ -13,7 +13,7 @@ public class RoomDestroyer : MonoBehaviour
             {
                 Destroy(other.gameObject);
             }
-            else
+            else if(other.CompareTag("Player") || other.CompareTag("Enemy"))
             {
                 Destroy(other.transform.parent.transform.parent.gameObject);
             }

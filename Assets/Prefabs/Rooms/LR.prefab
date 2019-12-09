@@ -754,6 +754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8691962590888219951}
   - component: {fileID: 2751745151560527472}
+  - component: {fileID: 6771058636936787771}
   m_Layer: 0
   m_Name: LR
   m_TagString: Untagged
@@ -793,6 +794,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761d9f60f489a0940937c77c4c5906f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6771058636936787771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990549013127711786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: 0907dbbcda26bfa48869e8a681ee6b8a, type: 2}
 --- !u!54 &8266408149268223818
 Rigidbody:
   m_ObjectHideFlags: 0

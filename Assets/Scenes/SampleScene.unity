@@ -3966,21 +3966,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5888514983407380834, guid: 43603405a8940a446a4e033e972e15cf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1710157946997940216, guid: 43603405a8940a446a4e033e972e15cf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6526971460012845856, guid: 43603405a8940a446a4e033e972e15cf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43603405a8940a446a4e033e972e15cf, type: 3}
 --- !u!1 &413364176 stripped
@@ -8226,7 +8211,7 @@ MonoBehaviour:
   closedRoom: {fileID: 1261100524331221758, guid: 4d09081b9f95a1a4b806c6489a2a795d,
     type: 3}
   rooms: []
-  waitTime: 3
+  waitTime: 5
   boss: {fileID: 100000, guid: 72be0c703037640cf97b8487e7a0d830, type: 3}
 --- !u!4 &897730547
 Transform:
