@@ -9415,7 +9415,7 @@ MonoBehaviour:
   closedRoom: {fileID: 1261100524331221758, guid: 4d09081b9f95a1a4b806c6489a2a795d,
     type: 3}
   rooms: []
-  waitTime: 3
+  waitTime: 5
   boss: {fileID: 100000, guid: 72be0c703037640cf97b8487e7a0d830, type: 3}
 --- !u!4 &897730547
 Transform:
@@ -12625,6 +12625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ac194d5549f1f47b4e03d02e07a939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRooms: 1
 --- !u!4 &1286326394
 Transform:
   m_ObjectHideFlags: 0

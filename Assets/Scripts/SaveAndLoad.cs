@@ -200,7 +200,6 @@ public class SaveAndLoad : MonoBehaviour
         openDirectionList.Add(direction);
         roomRandList.Add(randNum);
         String vectorString = posX + "," + posY + "," + posZ;
-        Debug.Log(vectorString + " " + posX);
         roomSpawnPosList.Add(vectorString);
     }
 
@@ -210,7 +209,7 @@ public class SaveAndLoad : MonoBehaviour
         Vector3 roomSpawnPos;
         int roomRand;
         string vectorString;
-        for(int i = 0; i < loadedOpenDirectionList.Count; i++)
+        for (int i = 0; i < loadedOpenDirectionList.Count; i++)
         {
             openDirection = loadedOpenDirectionList[i];
             roomRand = loadedRoomRandList[i];
@@ -237,11 +236,24 @@ public class SaveAndLoad : MonoBehaviour
                 //spawn room with RIGHT door
                 Instantiate(templates.rightRooms[roomRand], roomSpawnPos, templates.rightRooms[roomRand].transform.rotation);
             }
+            else if (openDirection == 5)
+            {
+                //spawn CLOSED room
+                Instantiate(templates.closedRoom, roomSpawnPos, Quaternion.identity);
+            }
         }
-
-        vectorString = loadedRoomSpawnPosList[loadedRoomSpawnPosList.Count - 1];
-        roomSpawnPos = stringToVec(vectorString);
-        Instantiate(boss, roomSpawnPos, Quaternion.identity);           
+        if (loadedOpenDirectionList[loadedOpenDirectionList.Count -1] != 5)
+        {
+            vectorString = loadedRoomSpawnPosList[loadedRoomSpawnPosList.Count - 1];
+            roomSpawnPos = stringToVec(vectorString);
+            Instantiate(boss, roomSpawnPos, Quaternion.identity);
+        }
+        else
+        {
+            vectorString = loadedRoomSpawnPosList[loadedRoomSpawnPosList.Count - 2];
+            roomSpawnPos = stringToVec(vectorString);
+            Instantiate(boss, roomSpawnPos, Quaternion.identity);
+        }                 
     }
 
     public Vector3 stringToVec(string s)

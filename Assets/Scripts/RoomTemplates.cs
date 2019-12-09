@@ -24,7 +24,8 @@ public class RoomTemplates : MonoBehaviour
     }
     void Update()
     {
-        if(spawnRooms == true)
+        spawnRooms = GameObject.Find("SaveLoad").GetComponent<SaveAndLoad>().spawnRooms;
+        if (spawnRooms == true)
         {
             if (waitTime <= 0 && spawnedBoss == false)
             {
