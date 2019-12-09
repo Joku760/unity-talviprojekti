@@ -16,17 +16,25 @@ public class RoomTemplates : MonoBehaviour
     public float waitTime;
     private bool spawnedBoss;
     public GameObject boss;
+    bool spawnRooms;
 
+    void Start()
+    {
+        spawnRooms = GameObject.Find("SaveLoad").GetComponent<SaveAndLoad>().spawnRooms;
+    }
     void Update()
     {
-        if(waitTime <= 0 && spawnedBoss == false)
+        if(spawnRooms == true)
         {
-            Instantiate(boss, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
-            spawnedBoss = true;
-        }
-        else
-        {
-            waitTime -= Time.deltaTime;
-        }
+            if (waitTime <= 0 && spawnedBoss == false)
+            {
+                Instantiate(boss, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+                spawnedBoss = true;
+            }
+            else
+            {
+                waitTime -= Time.deltaTime;
+            }
+        }     
     }
 }

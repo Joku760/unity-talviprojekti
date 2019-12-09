@@ -28,6 +28,7 @@ public class SaveAndLoad : MonoBehaviour
     public Boolean spawnRooms = true;
     List<GameObject> chestsAll = new List<GameObject>();
     List<String> openChests = new List<String>();
+    GameObject boss;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class SaveAndLoad : MonoBehaviour
         loadBool = PlayerPrefs.GetInt("SaveLoadBoolean");
         loadBool2 = PlayerPrefs.GetInt("SaveLoadBoolean");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        boss = templates.boss;
         if (loadBool == 1)
         {
             Load();
@@ -236,6 +238,10 @@ public class SaveAndLoad : MonoBehaviour
                 Instantiate(templates.rightRooms[roomRand], roomSpawnPos, templates.rightRooms[roomRand].transform.rotation);
             }
         }
+
+        vectorString = loadedRoomSpawnPosList[loadedRoomSpawnPosList.Count - 1];
+        roomSpawnPos = stringToVec(vectorString);
+        Instantiate(boss, roomSpawnPos, Quaternion.identity);           
     }
 
     public Vector3 stringToVec(string s)
