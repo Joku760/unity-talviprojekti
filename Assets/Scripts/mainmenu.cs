@@ -8,6 +8,7 @@ public class mainmenu : MonoBehaviour
 {
     public GameObject Settingsmenu;
     public GameObject Mainmenu;
+    public GameObject Leaderboard;
     public AudioMixer audioMixer;
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
@@ -56,10 +57,18 @@ public class mainmenu : MonoBehaviour
         Settingsmenu.SetActive(true);
     }
 
+    public void LeaderboardMenu()
+    {
+        Mainmenu.SetActive(false);
+        Leaderboard.SetActive(true);
+    }
+
+
     public void BackToMenu()
     {
         Mainmenu.SetActive(true);
         Settingsmenu.SetActive(false);
+        Leaderboard.SetActive(false);
     }
 
     public void SetVolume(float volume)

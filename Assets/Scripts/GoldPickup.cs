@@ -64,6 +64,7 @@ public class GoldPickup : MonoBehaviour
     void GiveGold()
     {
         player.GetComponent<PlayerController>().gold = player.GetComponent<PlayerController>().gold + addGold;
+        player.GetComponent<PlayerController>().points = player.GetComponent<PlayerController>().points + addGold;
         goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
     }
 }
