@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public GameObject shopMenu;
     public int gold = 0;
     public int healthPotions = 0;
+    public int points = 0;
     Text potionText;
     public int armor = 0;
     AudioSource audioSource;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip hit;
     public AudioClip crossbow;
     public bool isWalking = false;
+    Leaderboard leaderboard;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
         dashTime = 5;
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
+        leaderboard = GetComponent<Leaderboard>();
     }
 
     // Update is called once per frame
@@ -58,7 +61,7 @@ public class PlayerController : MonoBehaviour
             RotatePlayer();
             RotateCamera();
             CheckAttackInput();       
-        }      
+        }
     }
 
     void FixedUpdate()
