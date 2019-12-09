@@ -3966,6 +3966,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1583961993, guid: 43603405a8940a446a4e033e972e15cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753205648418583490, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210142212118510190, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 56184072916403291, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1318504958247523268, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 1086686627}
+    - target: {fileID: 1318504958247523268, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: shopMenu
+      value: 
+      objectReference: {fileID: 321218730}
+    - target: {fileID: 1318504958247523268, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: upgradePanel1
+      value: 
+      objectReference: {fileID: 600297904}
+    - target: {fileID: 1318504958247523268, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: upgradePanel2
+      value: 
+      objectReference: {fileID: 1267643632}
+    - target: {fileID: 1318504958247523268, guid: 43603405a8940a446a4e033e972e15cf,
+        type: 3}
+      propertyPath: upgradePanel3
+      value: 
+      objectReference: {fileID: 619238920}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43603405a8940a446a4e033e972e15cf, type: 3}
 --- !u!1 &413364176 stripped

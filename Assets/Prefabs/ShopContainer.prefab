@@ -9549,8 +9549,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.5096389, g: 0.9622642, b: 0.503827, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 0.8
+  m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -9641,8 +9641,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.5096389, g: 0.9622642, b: 0.503827, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 0.8
+  m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -9818,25 +9818,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 3, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &571232943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337197664949802697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48805f37c44d49847919fab37a939a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hud: {fileID: 0}
-  shopMenu: {fileID: 0}
-  potionPrice: 20
-  upgradePanel1: {fileID: 0}
-  upgradePanel2: {fileID: 0}
-  upgradePanel3: {fileID: 0}
-  buyItem: {fileID: 8300000, guid: cfcd53c942457884db17596c7cac28b9, type: 3}
 --- !u!82 &1539564559
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9934,6 +9915,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &571232943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337197664949802697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48805f37c44d49847919fab37a939a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hud: {fileID: 0}
+  shopMenu: {fileID: 0}
+  potionPrice: 20
+  upgradePanel1: {fileID: 0}
+  upgradePanel2: {fileID: 0}
+  upgradePanel3: {fileID: 0}
+  buyItem: {fileID: 8300000, guid: cfcd53c942457884db17596c7cac28b9, type: 3}
 --- !u!65 &1336406200020993579
 BoxCollider:
   m_ObjectHideFlags: 0
