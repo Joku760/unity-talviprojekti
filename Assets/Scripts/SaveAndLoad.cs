@@ -11,22 +11,50 @@ public class SaveAndLoad : MonoBehaviour
     GameObject player;
     GameObject sword;
     int loadBool;
+    int loadBool2;
     private List<String> onLoadDelete = new List<String>();
     List<GameObject> interactablesAll = new List<GameObject>();
     private List<String> litTorches = new List<String>();
     List<GameObject> allTorches = new List<GameObject>();
     List<String> loadedLitTorches = new List<String>();
+    List<int> openDirectionList = new List<int>();
+    List<int> roomRandList = new List<int>();
+    List<String> roomSpawnPosList = new List<String>();
+    List<int> loadedOpenDirectionList = new List<int>();
+    List<int> loadedRoomRandList = new List<int>();
+    List<String> loadedRoomSpawnPosList = new List<String>();
+    private RoomTemplates templates;
+    bool roomLoaded = false;
+    public Boolean spawnRooms = true;
+    List<GameObject> chestsAll = new List<GameObject>();
+    List<String> openChests = new List<String>();
+    GameObject boss;
 
     void Start()
     {
         player = GameObject.Find("Player");
         sword = GameObject.Find("PolyartSword");
         loadBool = PlayerPrefs.GetInt("SaveLoadBoolean");
+        loadBool2 = PlayerPrefs.GetInt("SaveLoadBoolean");
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        boss = templates.boss;
         if (loadBool == 1)
         {
-            PlayerPrefs.SetInt("SaveLoadBoolean", 0);
             Load();
+            StartCoroutine(LoadCoroutine());
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("SaveLoadBoolean", 0);
+    }
+
+    IEnumerator LoadCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        Load2();
+        yield return null;
     }
 
     void Update()
@@ -34,7 +62,7 @@ public class SaveAndLoad : MonoBehaviour
         if (loadBool == 1)
         {
             loadBool = 0;
-            Load();
+            //Load();
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
@@ -67,6 +95,20 @@ public class SaveAndLoad : MonoBehaviour
         data.boltDamage = GameObject.Find("RPGHeroPolyart").GetComponent<CrossBow>().damage;
         data.swordDamage = sword.GetComponent<Sword>().damage;
         data.swordMultiplier = sword.GetComponent<Sword>().specialMultiplier;
+        if(loadBool2 == 0)
+        {
+            Debug.Log("SAVED LEVEL");
+            data.openDirectionList = openDirectionList;
+            data.roomRandList = roomRandList;
+            data.roomSpawnPosList = roomSpawnPosList;
+        }
+        else
+        {
+            data.openDirectionList = loadedOpenDirectionList;
+            data.roomRandList = loadedRoomRandList;
+            data.roomSpawnPosList = loadedRoomSpawnPosList;
+        }
+        data.openChests = openChests;
 
         bf.Serialize(file, data);
         file.Close();
@@ -96,6 +138,17 @@ public class SaveAndLoad : MonoBehaviour
             GameObject.Find("RPGHeroPolyart").GetComponent<CrossBow>().damage = data.boltDamage;
             onLoadDelete = data.onLoadDelete;
             loadedLitTorches = data.litTorches;
+            loadedOpenDirectionList = data.openDirectionList;
+            loadedRoomRandList = data.roomRandList;
+            loadedRoomSpawnPosList = data.roomSpawnPosList;
+            if(roomLoaded == false)
+            {
+                roomLoaded = true;
+                spawnRooms = false;
+                RoomLoader();
+            }
+            openChests = data.openChests;
+            /*
             foreach (String vectorString in onLoadDelete)
             {
                 foreach(GameObject obj in interactablesAll)
@@ -114,6 +167,50 @@ public class SaveAndLoad : MonoBehaviour
                     {
                         obj.GetComponent<LightTorch>().Light();
                     }
+                }
+            }
+            foreach (String vectorString in openChests)
+            {
+                foreach (GameObject obj in chestsAll)
+                {
+                    if (obj.transform.position.ToString().Equals(vectorString))
+                    {
+                        obj.GetComponent<OpenChest>().AlreadyOpen();
+                    }
+                }
+            } */
+        }
+    }
+
+    public void Load2()
+    {
+        foreach (String vectorString in onLoadDelete)
+        {
+            foreach (GameObject obj in interactablesAll)
+            {
+                if (obj.transform.position.ToString().Equals(vectorString))
+                {
+                    obj.gameObject.SetActive(false);
+                }
+            }
+        }
+        foreach (String vectorString in loadedLitTorches)
+        {
+            foreach (GameObject obj in allTorches)
+            {
+                if (obj.transform.position.ToString().Equals(vectorString))
+                {
+                    obj.GetComponent<LightTorch>().Light();
+                }
+            }
+        }
+        foreach (String vectorString in openChests)
+        {
+            foreach (GameObject obj in chestsAll)
+            {
+                if (obj.transform.position.ToString().Equals(vectorString))
+                {
+                    obj.GetComponent<OpenChest>().AlreadyOpen();
                 }
             }
         }
@@ -140,13 +237,98 @@ public class SaveAndLoad : MonoBehaviour
     {
         allTorches.Add(obj);
     }
-    /*
+
+    public void RoomSaver(int direction, int randNum, float posX, float posY, float posZ)
+    {
+        openDirectionList.Add(direction);
+        roomRandList.Add(randNum);
+        String vectorString = posX + "," + posY + "," + posZ;
+        roomSpawnPosList.Add(vectorString);
+    }
+
+    public void RoomLoader()
+    {
+        int openDirection;
+        Vector3 roomSpawnPos;
+        int roomRand;
+        string vectorString;
+        for (int i = 0; i < loadedOpenDirectionList.Count; i++)
+        {
+            openDirection = loadedOpenDirectionList[i];
+            roomRand = loadedRoomRandList[i];
+            vectorString = loadedRoomSpawnPosList[i];
+            roomSpawnPos = stringToVec(vectorString);
+
+            if (openDirection == 1)
+            {
+                //spawn room with BOTTOM door
+                Instantiate(templates.bottomRooms[roomRand], roomSpawnPos, templates.bottomRooms[roomRand].transform.rotation);
+            }
+            else if (openDirection == 2)
+            {
+                //spawn room with TOP door
+                Instantiate(templates.topRooms[roomRand], roomSpawnPos, templates.topRooms[roomRand].transform.rotation);
+            }
+            else if (openDirection == 3)
+            {
+                //spawn room with LEFT door
+                Instantiate(templates.leftRooms[roomRand], roomSpawnPos, templates.leftRooms[roomRand].transform.rotation);
+            }
+            else if (openDirection == 4)
+            {
+                //spawn room with RIGHT door
+                Instantiate(templates.rightRooms[roomRand], roomSpawnPos, templates.rightRooms[roomRand].transform.rotation);
+            }
+            else if (openDirection == 5)
+            {
+                //spawn CLOSED room
+                Instantiate(templates.closedRoom, roomSpawnPos, Quaternion.identity);
+            }
+        }
+        if (loadedOpenDirectionList[loadedOpenDirectionList.Count -1] != 5)
+        {
+            vectorString = loadedRoomSpawnPosList[loadedRoomSpawnPosList.Count - 1];
+            roomSpawnPos = stringToVec(vectorString);
+            Instantiate(boss, roomSpawnPos, Quaternion.identity);
+        }
+        else
+        {
+            vectorString = loadedRoomSpawnPosList[loadedRoomSpawnPosList.Count - 2];
+            roomSpawnPos = stringToVec(vectorString);
+            Instantiate(boss, roomSpawnPos, Quaternion.identity);
+        }                 
+    }
+
     public Vector3 stringToVec(string s)
     {
-        string[] temp = s.Substring(1, s.Length - 2).Split(',');
-        return new Vector3(float.Parse(temp[0]), float.Parse(temp[1]), float.Parse(temp[2]));
+        if (s.StartsWith("(") && s.EndsWith(")"))
+        {
+            s = s.Substring(1, s.Length - 2);
+        }
+
+        // split the items
+        string[] sArray = s.Split(',');
+
+        // store as a Vector3
+        Vector3 result = new Vector3(
+            float.Parse(sArray[0]),
+            float.Parse(sArray[1]),
+            float.Parse(sArray[2]));
+
+        return result;
     }
-    */
+
+    public void AllChests(GameObject obj)
+    {
+        chestsAll.Add(obj);
+    }
+
+    public void AddOpenedChest(Vector3 pos)
+    {
+        String vectorString = pos.ToString();
+        openChests.Add(vectorString);
+    }
+
 }
 
 [Serializable]
@@ -154,6 +336,10 @@ public class SaveData
 {
     public List<String> onLoadDelete = new List<String>();
     public List<String> litTorches = new List<String>();
+    public List<int> openDirectionList = new List<int>();
+    public List<int> roomRandList = new List<int>();
+    public List<String> roomSpawnPosList = new List<String>();
+    public List<String> openChests = new List<String>();
     public int healthPotions = 0;
     public int gold = 0;
     public float posX = 0;

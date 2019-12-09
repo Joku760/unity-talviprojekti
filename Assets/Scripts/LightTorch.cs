@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightTorch : MonoBehaviour
 {
-    Transform player;
+    public Transform player;
     Light torchlight;
     GameObject saveLoad;
     bool unlit;

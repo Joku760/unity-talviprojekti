@@ -12,17 +12,25 @@ public class RoomSpawner : MonoBehaviour
 
     public float waitTime = 6f;
     private float spawnTime;
+    GameObject saveLoad;
+    bool spawnRooms;
     void Start()
     {
         Destroy(gameObject, waitTime);
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         spawnTime = Random.Range(0.1f, 0.4f);
-        Invoke("Spawn", spawnTime);
+        saveLoad = GameObject.Find("SaveLoad");
+        spawnRooms = GameObject.Find("SaveLoad").GetComponent<SaveAndLoad>().spawnRooms;
+        if(spawnRooms == true )
+        {
+            Invoke("Spawn", spawnTime);
+        }
     }
  
     void Spawn()
     {
-        if(spawned == false)
+        spawnRooms = GameObject.Find("SaveLoad").GetComponent<SaveAndLoad>().spawnRooms;
+        if (spawned == false && spawnRooms == true)
         {
             if (openingDirection == 1)
             {
@@ -49,6 +57,8 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
             spawned = true;
+            saveLoad.GetComponent<SaveAndLoad>().RoomSaver(openingDirection, rand, transform.position.x, transform.position.y, transform.position.z);
+
         }      
     }
 
@@ -58,7 +68,12 @@ public class RoomSpawner : MonoBehaviour
         {
             if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false)            
             {
-                Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+                spawnRooms = GameObject.Find("SaveLoad").GetComponent<SaveAndLoad>().spawnRooms;
+                if (spawnRooms == true)
+                {
+                    Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+                    saveLoad.GetComponent<SaveAndLoad>().RoomSaver(5, rand, transform.position.x, transform.position.y, transform.position.z);
+                }
                 Destroy(gameObject);
             }
             other.GetComponent<RoomSpawner>().spawned = true;
