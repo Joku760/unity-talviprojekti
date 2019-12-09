@@ -29,7 +29,8 @@ public class RoomSpawner : MonoBehaviour
  
     void Spawn()
     {
-        if(spawned == false)
+        spawnRooms = GameObject.Find("SaveLoad").GetComponent<SaveAndLoad>().spawnRooms;
+        if (spawned == false && spawnRooms == true)
         {
             if (openingDirection == 1)
             {
