@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         dashTime = 5;
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
+        PlayerPrefs.SetInt("IsAlive", 1);
     }
 
     // Update is called once per frame
@@ -191,6 +192,7 @@ public class PlayerController : MonoBehaviour
             //GAMEOVER
             animator.SetTrigger("Die");
             isDead = true;
+            PlayerPrefs.SetInt("IsAlive", 0);
             gameOverScreen.SetActive(true);
         }
         else if (damage > 0)

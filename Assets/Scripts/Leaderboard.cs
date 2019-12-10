@@ -16,9 +16,16 @@ public class Leaderboard : MonoBehaviour
         {
             highScoreValues[x] = PlayerPrefs.GetInt("highScoreValues" + x);
         }
-        CheckHighScores();
-        DrawScores();
-        PlayerPrefs.SetInt("Score", 0);
+        if(PlayerPrefs.GetInt("IsAlive") == 0)
+        {
+            CheckHighScores();
+            DrawScores();
+            PlayerPrefs.SetInt("Score", 0);
+        }
+        else
+        {
+            DrawScores();
+        }
     }
 
     // Update is called once per frame
