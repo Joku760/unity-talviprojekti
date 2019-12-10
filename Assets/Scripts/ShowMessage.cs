@@ -45,8 +45,8 @@ public class ShowMessage : MonoBehaviour
             objekti.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             HUD.gameObject.SetActive(true);
-            var hinge = GameObject.Find("StartDoorway").gameObject.GetComponent<HingeJoint>();
-            hinge.useMotor = true;
+            //var hinge = GameObject.Find("StartDoorway").gameObject.GetComponent<HingeJoint>();
+            //hinge.useMotor = true;
         }
     }
     bool HaveLineOfSight()
