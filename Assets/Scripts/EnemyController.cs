@@ -54,10 +54,22 @@ public class EnemyController : MonoBehaviour
         return false;
     }
 
+    bool WithinRange()
+    {
+        Vector3 directionToTarget = transform.position - player.position;
+        float distance = directionToTarget.magnitude;
+
+        if (distance < 5)
+        {
+            return true;
+        }
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (isAlive && playerController.isDead == false)
+        if (isAlive && playerController.isDead == false && WithinRange())
         {
             nav.SetDestination(player.position);
 
