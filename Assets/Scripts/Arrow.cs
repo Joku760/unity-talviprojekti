@@ -56,7 +56,7 @@ public class Arrow : MonoBehaviour
                 audioSource.clip = glass;
                 audioSource.Play();
             }
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Urn>().BreakUrn();
         }
         else
         {

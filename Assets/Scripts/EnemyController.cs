@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     public AudioClip slash;
     GameObject saveLoad;
     Vector3 startPos;
-    public GameObject drop;
+    GameObject drop;
     bool canDropGold = true;
 
     void Awake()
@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
         saveLoad = GameObject.Find("SaveLoad");
         saveLoad.GetComponent<SaveAndLoad>().ObjectToList(this.gameObject);
         startPos = gameObject.transform.position;
+        drop = GameObject.Find("drop");
     }
 
     private void OnDestroy() 

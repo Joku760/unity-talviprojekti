@@ -56,9 +56,9 @@ public class Sword : MonoBehaviour
         if(other.tag == "Breakable")
         {
             //Break object
-            Destroy(other.gameObject);
             audioSource.clip = glass;
             audioSource.Play();
+            other.gameObject.GetComponent<Urn>().BreakUrn();
         }
     }
 }
