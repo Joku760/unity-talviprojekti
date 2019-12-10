@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
             RotateCamera();
             CheckAttackInput();       
         }
-        Debug.Log("POINTS: " + points);
     }
 
     void FixedUpdate()

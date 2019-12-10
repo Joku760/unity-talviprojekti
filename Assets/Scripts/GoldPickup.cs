@@ -9,6 +9,7 @@ public class GoldPickup : MonoBehaviour
     GameObject player;
     int addGold;
     Text goldText;
+    Text pointsText;
     GameObject saveLoad;
     AudioSource audioSource;
     public AudioClip money;
@@ -20,6 +21,7 @@ public class GoldPickup : MonoBehaviour
         player = GameObject.Find("Player");
         addGold = Random.Range(14, 26);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
+        pointsText = GameObject.Find("PointsAmount").GetComponent<Text>();
         saveLoad = GameObject.Find("SaveLoad");
         saveLoad.GetComponent<SaveAndLoad>().ObjectToList(this.gameObject);
         audioSource = GetComponent<AudioSource>();
@@ -67,5 +69,6 @@ public class GoldPickup : MonoBehaviour
         player.GetComponent<PlayerController>().points = player.GetComponent<PlayerController>().points + addGold;
         PlayerPrefs.SetInt("Score", player.GetComponent<PlayerController>().points);
         goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
+        pointsText.text = "Points: " + player.GetComponent<PlayerController>().points.ToString();
     }
 }
