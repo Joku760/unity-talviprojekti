@@ -83,6 +83,7 @@ public class SaveAndLoad : MonoBehaviour
         SaveData data = new SaveData();
         data.healthPotions = player.GetComponent<PlayerController>().healthPotions;
         data.gold = player.GetComponent<PlayerController>().gold;
+        data.points = player.GetComponent<PlayerController>().points;
         data.posX = player.transform.position.x;
         data.posY = player.transform.position.y;
         data.posZ = player.transform.position.z;
@@ -127,6 +128,8 @@ public class SaveAndLoad : MonoBehaviour
             GameObject.Find("PotionAmount").GetComponent<Text>().text = "HP Pots: " + data.healthPotions.ToString();
             player.GetComponent<PlayerController>().gold = data.gold;
             GameObject.Find("GoldAmount").GetComponent<Text>().text = "Gold: " + data.gold.ToString();
+            player.GetComponent<PlayerController>().points = data.points;
+            GameObject.Find("PointsAmount").GetComponent<Text>().text = "Points: " + data.points.ToString();
             player.transform.position = new Vector3(data.posX, data.posY, data.posZ);
             player.GetComponent<PlayerController>().hp = 100;
             player.GetComponent<PlayerController>().UpdateHp(100 - data.playerHP);
@@ -342,6 +345,7 @@ public class SaveData
     public List<String> openChests = new List<String>();
     public int healthPotions = 0;
     public int gold = 0;
+    public int points = 0;
     public float posX = 0;
     public float posY = 0;
     public float posZ = 0;
