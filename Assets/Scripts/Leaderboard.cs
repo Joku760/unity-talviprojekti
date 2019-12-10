@@ -16,7 +16,16 @@ public class Leaderboard : MonoBehaviour
         {
             highScoreValues[x] = PlayerPrefs.GetInt("highScoreValues" + x);
         }
-        DrawScores();
+        if(PlayerPrefs.GetInt("IsAlive") == 0)
+        {
+            CheckHighScores();
+            DrawScores();
+            PlayerPrefs.SetInt("Score", 0);
+        }
+        else
+        {
+            DrawScores();
+        }
     }
 
     // Update is called once per frame
@@ -41,17 +50,17 @@ public class Leaderboard : MonoBehaviour
         }
     }
 
-    public void CheckHighScores(int value)
+    public void CheckHighScores()
     {
         for (int x = 0; x < highScores.Length; x++)
         {
-            if(value > highScoreValues[x])
+            if(PlayerPrefs.GetInt("Score") > highScoreValues[x])
             {
                 for(int y = highScores.Length -1; y > x; y--)
                 {
                     highScoreValues[y] = highScoreValues[y - 1];
                 }
-                highScoreValues[x] = value;
+                highScoreValues[x] = PlayerPrefs.GetInt("Score");
                 DrawScores();
                 SaveScores();
                 break;
