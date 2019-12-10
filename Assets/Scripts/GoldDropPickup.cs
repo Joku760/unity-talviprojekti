@@ -9,6 +9,7 @@ public class GoldDropPickup : MonoBehaviour
     GameObject player;
     int addGold;
     Text goldText;
+    Text pointsText;
     AudioSource audioSource;
     public AudioClip money;
     MeshRenderer render;
@@ -19,6 +20,7 @@ public class GoldDropPickup : MonoBehaviour
         player = GameObject.Find("Player");
         addGold = Random.Range(14, 26);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
+        pointsText = GameObject.Find("PointsAmount").GetComponent<Text>();
         audioSource = GetComponent<AudioSource>();
         render = GetComponent<MeshRenderer>();
     }
@@ -63,5 +65,6 @@ public class GoldDropPickup : MonoBehaviour
         player.GetComponent<PlayerController>().points = player.GetComponent<PlayerController>().points + addGold;
         PlayerPrefs.SetInt("Score", player.GetComponent<PlayerController>().points);
         goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
+        pointsText.text = "Points: " + player.GetComponent<PlayerController>().points.ToString();
     }
 }

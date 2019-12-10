@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 2357416027602977768}
   - component: {fileID: 7981002919038852234}
   - component: {fileID: 8552415540249399245}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Props_Coffin_Stone_WithCross (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2375,11 +2375,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4782122063861334, guid: 3283d79c16b08544894c4416b9eecfc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.847
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 4782122063861334, guid: 3283d79c16b08544894c4416b9eecfc8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.191
+      value: 0.123
       objectReference: {fileID: 0}
     - target: {fileID: 4782122063861334, guid: 3283d79c16b08544894c4416b9eecfc8, type: 3}
       propertyPath: m_LocalPosition.z

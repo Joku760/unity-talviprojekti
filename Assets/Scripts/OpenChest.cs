@@ -12,6 +12,7 @@ public class OpenChest : MonoBehaviour
     public AudioClip chest;
     int addGold;
     Text goldText;
+    Text pointsText;
     GameObject saveLoad;
     Text potionText;
     int rollTheDie;
@@ -22,6 +23,7 @@ public class OpenChest : MonoBehaviour
         player = GameObject.Find("Player");
         rollTheDie = Random.Range(1, 100);
         goldText = GameObject.Find("GoldAmount").GetComponent<Text>();
+        pointsText = GameObject.Find("PointsAmount").GetComponent<Text>();
         saveLoad = GameObject.Find("SaveLoad");
         potionText = GameObject.Find("PotionAmount").GetComponent<Text>();
         saveLoad.GetComponent<SaveAndLoad>().AllChests(this.gameObject);
@@ -76,6 +78,7 @@ public class OpenChest : MonoBehaviour
         player.GetComponent<PlayerController>().points = player.GetComponent<PlayerController>().points + addGold;
         PlayerPrefs.SetInt("Score", player.GetComponent<PlayerController>().points);
         goldText.text = "Gold: " + player.GetComponent<PlayerController>().gold.ToString();
+        pointsText.text = "Points: " + player.GetComponent<PlayerController>().points.ToString();
     }
     void GivePotion()
     {
