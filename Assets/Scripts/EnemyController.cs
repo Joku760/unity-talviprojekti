@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+        enemy = gameObject.transform;
         nav = GetComponent<NavMeshAgent>();
         playerController = player.GetComponent<PlayerController>();
         audioSource = GetComponent<AudioSource>();
