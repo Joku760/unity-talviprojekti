@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour
     Vector3 startPos;
     GameObject drop;
     bool canDropGold = true;
+    int loading;
 
     void Awake()
     {
@@ -35,11 +36,6 @@ public class EnemyController : MonoBehaviour
         saveLoad.GetComponent<SaveAndLoad>().ObjectToList(this.gameObject);
         startPos = gameObject.transform.position;
         drop = GameObject.Find("drop");
-    }
-
-    private void OnDestroy() 
-    {
-        //Instantiate(drop, new Vector3(enemy.position.x, 0.01f , enemy.position.z), drop.transform.rotation); 
     }
 
     bool InFront()
@@ -70,7 +66,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAlive && playerController.isDead == false && WithinRange())
+        loading = PlayerPrefs.GetInt("loading");
+        if (isAlive && playerController.isDead == false && WithinRange() && loading == 0)
         {
             nav.SetDestination(player.position);
 
@@ -87,7 +84,7 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetTrigger("Victory");
         }
-        else 
+        else
         {
             nav.SetDestination(enemy.position);
         }

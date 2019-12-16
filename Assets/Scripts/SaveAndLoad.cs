@@ -29,6 +29,7 @@ public class SaveAndLoad : MonoBehaviour
     List<GameObject> chestsAll = new List<GameObject>();
     List<String> openChests = new List<String>();
     GameObject boss;
+    public GameObject loading;
 
     void Start()
     {
@@ -40,6 +41,8 @@ public class SaveAndLoad : MonoBehaviour
         boss = templates.boss;
         if (loadBool == 1)
         {
+            loading.gameObject.SetActive(true);
+            PlayerPrefs.SetInt("loading", 1);
             Load();
             StartCoroutine(LoadCoroutine());
         }
@@ -54,6 +57,8 @@ public class SaveAndLoad : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Load2();
+        loading.gameObject.SetActive(false);
+        PlayerPrefs.SetInt("loading", 0);
         yield return null;
     }
 

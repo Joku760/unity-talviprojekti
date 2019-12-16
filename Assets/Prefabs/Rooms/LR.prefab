@@ -443,6 +443,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: b1d3789359371c749abfc5b437fb5f2f, type: 3}
+--- !u!65 &6030216482657269345
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524309396636133336}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9895266, y: 0.6256927, z: 0.70697707}
+  m_Center: {x: -0.00000047683716, y: 0.31284636, z: -0.0000009536744}
 --- !u!208 &6185220853922382038
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -459,19 +472,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.31300002, z: 0}
   m_TimeToStationary: 0.5
---- !u!65 &6030216482657269345
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4524309396636133336}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.9895266, y: 0.6256927, z: 0.70697707}
-  m_Center: {x: -0.00000047683716, y: 0.31284636, z: -0.0000009536744}
 --- !u!54 &6061929395226326161
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -502,6 +502,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: b1d3789359371c749abfc5b437fb5f2f, type: 3}
+--- !u!65 &4649525342068490365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620942779969389631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9895266, y: 0.6256927, z: 0.70697707}
+  m_Center: {x: 0.00000035762787, y: 0.31284636, z: -0.0000009536744}
 --- !u!208 &1868860059957244062
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -518,19 +531,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.31300002, z: 0}
   m_TimeToStationary: 0.5
---- !u!65 &4649525342068490365
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620942779969389631}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.9895266, y: 0.6256927, z: 0.70697707}
-  m_Center: {x: 0.00000035762787, y: 0.31284636, z: -0.0000009536744}
 --- !u!1 &5200023922695942872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1066,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: b1d3789359371c749abfc5b437fb5f2f, type: 3}
+--- !u!65 &8393930266466035008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110267603963213807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.89086217, y: 0.46693894, z: 1.8570853}
+  m_Center: {x: -2.2737368e-13, y: 0.2334695, z: -0.00000023841858}
 --- !u!208 &7663185371958245867
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1082,19 +1095,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.23300001, z: 0}
   m_TimeToStationary: 0.5
---- !u!65 &8393930266466035008
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9110267603963213807}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.89086217, y: 0.46693894, z: 1.8570853}
-  m_Center: {x: -2.2737368e-13, y: 0.2334695, z: -0.00000023841858}
 --- !u!54 &7249074683593941233
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2261,17 +2261,17 @@ PrefabInstance:
     - target: {fileID: 5481661709876226050, guid: 06d51ab268685c949a39998f71233a77,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3099339
+      value: 1.325
       objectReference: {fileID: 0}
     - target: {fileID: 5481661709876226050, guid: 06d51ab268685c949a39998f71233a77,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.476
+      value: 0.4638367
       objectReference: {fileID: 0}
     - target: {fileID: 5481661709876226050, guid: 06d51ab268685c949a39998f71233a77,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8914439
+      value: 0.811
       objectReference: {fileID: 0}
     - target: {fileID: 5481661709876226050, guid: 06d51ab268685c949a39998f71233a77,
         type: 3}
