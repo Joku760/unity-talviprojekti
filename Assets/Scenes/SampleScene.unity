@@ -9539,6 +9539,10 @@ PrefabInstance:
       propertyPath: shopMenu
       value: 
       objectReference: {fileID: 321218730}
+    - target: {fileID: 1759538463266697, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984729569f8972c4abc2dffa563be5eb, type: 3}
 --- !u!1 &1350598381 stripped
